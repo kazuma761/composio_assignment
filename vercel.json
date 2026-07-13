@@ -1,20 +1,9 @@
 {
   "version": 2,
-  "name": "composio-assignment",
-  "builds": [
-    {
-      "src": "page/**/*.html",
-      "use": "@vercel/static"
-    }
-  ],
   "routes": [
     {
       "src": "/",
       "dest": "/page/report.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/page/$1"
     }
   ]
 }
