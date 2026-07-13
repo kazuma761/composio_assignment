@@ -1,0 +1,609 @@
+{
+  "source_template": "output/verification_pass1_filled.json",
+  "apps_reviewed": 18,
+  "fields_scored_total": 126,
+  "fields_correct_total": 75,
+  "fields_unsure_total": 29,
+  "accuracy_strict_unsure_as_wrong": 0.5952,
+  "accuracy_excluding_unsure": 0.7732,
+  "by_field": {
+    "auth_method": {
+      "correct": 13,
+      "incorrect": 3,
+      "unsure": 2,
+      "unscored": 0
+    },
+    "self_serve_or_gated": {
+      "correct": 13,
+      "incorrect": 2,
+      "unsure": 3,
+      "unscored": 0
+    },
+    "api_surface": {
+      "correct": 5,
+      "incorrect": 1,
+      "unsure": 12,
+      "unscored": 0
+    },
+    "has_mcp": {
+      "correct": 7,
+      "incorrect": 0,
+      "unsure": 11,
+      "unscored": 0
+    },
+    "buildability_verdict": {
+      "correct": 16,
+      "incorrect": 1,
+      "unsure": 1,
+      "unscored": 0
+    },
+    "blocker": {
+      "correct": 14,
+      "incorrect": 4,
+      "unsure": 0,
+      "unscored": 0
+    },
+    "evidence_url": {
+      "correct": 7,
+      "incorrect": 11,
+      "unsure": 0,
+      "unscored": 0
+    }
+  },
+  "per_app": [
+    {
+      "id": 4,
+      "name": "Attio",
+      "researched_via": "composio",
+      "fields_scored": 7,
+      "fields_correct": 4,
+      "accuracy": 0.571
+    },
+    {
+      "id": 5,
+      "name": "Twenty",
+      "researched_via": "web",
+      "fields_scored": 7,
+      "fields_correct": 2,
+      "accuracy": 0.286
+    },
+    {
+      "id": 12,
+      "name": "Intercom",
+      "researched_via": "seed",
+      "fields_scored": 7,
+      "fields_correct": 7,
+      "accuracy": 1.0
+    },
+    {
+      "id": 14,
+      "name": "Front",
+      "researched_via": "composio",
+      "fields_scored": 7,
+      "fields_correct": 2,
+      "accuracy": 0.286
+    },
+    {
+      "id": 15,
+      "name": "Pylon",
+      "researched_via": "composio",
+      "fields_scored": 7,
+      "fields_correct": 6,
+      "accuracy": 0.857
+    },
+    {
+      "id": 18,
+      "name": "Help Scout",
+      "researched_via": "composio",
+      "fields_scored": 7,
+      "fields_correct": 4,
+      "accuracy": 0.571
+    },
+    {
+      "id": 28,
+      "name": "WhatsApp Business",
+      "researched_via": "composio",
+      "fields_scored": 7,
+      "fields_correct": 0,
+      "accuracy": 0.0
+    },
+    {
+      "id": 29,
+      "name": "Aircall",
+      "researched_via": "web",
+      "fields_scored": 7,
+      "fields_correct": 5,
+      "accuracy": 0.714
+    },
+    {
+      "id": 30,
+      "name": "Vonage",
+      "researched_via": "web",
+      "fields_scored": 7,
+      "fields_correct": 3,
+      "accuracy": 0.429
+    },
+    {
+      "id": 32,
+      "name": "Meta Ads",
+      "researched_via": "composio",
+      "fields_scored": 7,
+      "fields_correct": 2,
+      "accuracy": 0.286
+    },
+    {
+      "id": 36,
+      "name": "Klaviyo",
+      "researched_via": "composio",
+      "fields_scored": 7,
+      "fields_correct": 4,
+      "accuracy": 0.571
+    },
+    {
+      "id": 55,
+      "name": "Apify",
+      "researched_via": "composio",
+      "fields_scored": 7,
+      "fields_correct": 4,
+      "accuracy": 0.571
+    },
+    {
+      "id": 65,
+      "name": "Supabase",
+      "researched_via": "composio",
+      "fields_scored": 7,
+      "fields_correct": 5,
+      "accuracy": 0.714
+    },
+    {
+      "id": 70,
+      "name": "Sentry",
+      "researched_via": "composio",
+      "fields_scored": 7,
+      "fields_correct": 5,
+      "accuracy": 0.714
+    },
+    {
+      "id": 76,
+      "name": "Monday.com",
+      "researched_via": "seed",
+      "fields_scored": 7,
+      "fields_correct": 6,
+      "accuracy": 0.857
+    },
+    {
+      "id": 82,
+      "name": "Plaid",
+      "researched_via": "web",
+      "fields_scored": 7,
+      "fields_correct": 5,
+      "accuracy": 0.714
+    },
+    {
+      "id": 87,
+      "name": "Xero",
+      "researched_via": "composio",
+      "fields_scored": 7,
+      "fields_correct": 4,
+      "accuracy": 0.571
+    },
+    {
+      "id": 95,
+      "name": "Reducto",
+      "researched_via": "web",
+      "fields_scored": 7,
+      "fields_correct": 7,
+      "accuracy": 1.0
+    }
+  ],
+  "misses": [
+    {
+      "id": 4,
+      "name": "Attio",
+      "field": "auth_method",
+      "verdict": "incorrect",
+      "claimed": "Attio Oauth",
+      "note": "Attio supports API key (primary self-serve method, generated in Workspace Settings > Developers) AND OAuth2 for published apps. Claim only lists OAuth, missing the API key path most self-serve devs actually use."
+    },
+    {
+      "id": 4,
+      "name": "Attio",
+      "field": "api_surface",
+      "verdict": "unsure",
+      "claimed": "Wrapped by Composio as 99 agent-callable tools (managed via Composio's toolkit catalog for 'attio')",
+      "note": "Can't independently verify the exact '99 tools' count without Composio catalog access."
+    },
+    {
+      "id": 4,
+      "name": "Attio",
+      "field": "evidence_url",
+      "verdict": "incorrect",
+      "claimed": "https://attio.com",
+      "note": "attio.com is the marketing homepage. Real docs are at developers.attio.com / docs.attio.com."
+    },
+    {
+      "id": 5,
+      "name": "Twenty",
+      "field": "auth_method",
+      "verdict": "incorrect",
+      "claimed": "OAuth",
+      "note": "Ungrounded \u2014 evidence_url doesn't even resolve to Twenty's site."
+    },
+    {
+      "id": 5,
+      "name": "Twenty",
+      "field": "self_serve_or_gated",
+      "verdict": "unsure",
+      "claimed": "unknown",
+      "note": "Agent honestly flagged 'unknown' given it had no real evidence; can't score as correct/incorrect since nothing was actually checked."
+    },
+    {
+      "id": 5,
+      "name": "Twenty",
+      "field": "api_surface",
+      "verdict": "incorrect",
+      "claimed": "standardized APIs and SDKs for location data and services",
+      "note": "Claimed 'standardized APIs and SDKs for location data and services' \u2014 that's HERE.com's API, not Twenty CRM at all. Fully ungrounded hallucination from a bad source page."
+    },
+    {
+      "id": 5,
+      "name": "Twenty",
+      "field": "has_mcp",
+      "verdict": "unsure",
+      "claimed": true,
+      "note": "No real evidence gathered either way."
+    },
+    {
+      "id": 5,
+      "name": "Twenty",
+      "field": "evidence_url",
+      "verdict": "incorrect",
+      "claimed": "https://www.bing.com/aclick?ld=e8S-dr_rik1F4AGa6lw8de7TVUCUwfa6BMs5ho0T4tpM4V7xptlTmrvkllsqX5mZDGaxz4QJK5hKgCf7mAfKJcUr2gOPnZPeeBGp1YTN4IKImY6e_r_JmlftpGdLEJD393mYICxqVTlVc_7Ysm-a2kj7hTmr9syYUpeM30MjeWVSbUvBeH-HC4cCABvn11iVNnn_PL4w&u=aHR0cHMlM2ElMmYlMmZhZC5kb3VibGVjbGljay5uZXQlMmZzZWFyY2hhZHMlMmZsaW5rJTJmY2xpY2slM2ZsaWQlM2Q0MzcwMDA4MzIyMjU3OTU1OSUyNmRzX3Nfa3dnaWQlM2Q1ODcwMDAwOTAwNjM4Njg5MiUyNmRzX2FfY2lkJTNkNDAwNDkwMzk2JTI2ZHNfYV9jYWlkJTNkMjM1MzM2NDU1NjclMjZkc19hX2FnaWQlM2QxODc5Mjk2NzUyOTAlMjZkc19hX2xpZCUzZGt3ZC0xMzg2OTY1OTUxNTE0JTI2JTI2ZHNfZV9hZGlkJTNkNzc1ODQ1MTYzOTA2NTQlMjZkc19lX3RhcmdldF9pZCUzZGt3ZC03NzU4NDgzMjA1MTY1MyUzYWxvYy0xMTYwNzIlMjYlMjZkc19lX25ldHdvcmslM2RvJTI2ZHNfdXJsX3YlM2QyJTI2ZHNfZGVzdF91cmwlM2RodHRwcyUzYSUyZiUyZnd3dy5oZXJlLmNvbSUyZnBsYXRmb3JtJTNmY2lkJTNkRGV2ZWxvcGVyX0phdmFzY3JpcHQtQXBpLUJpbmctWVQtMC1EZXYtQVBBQy1JTi1tYXRjaHR5cGUlM2RwJTI2dXRtX3NvdXJjZSUzZEJpbmclMjZ1dG1fbWVkaXVtJTNkcHBjJTI2dXRtX2NhbXBhaWduJTNkUHJvZHVjdHNfQWx3YXlzT24lMjZ1dG1fdGVybSUzZGphdmFzY3JpcHQlMjUyMGFwaXMlMjZnY2xpZCUzZGE4OGU2YTZlNDFmYjE5ZTAyZThiMDAzYWVjYjdhNWExJTI2Z2Nsc3JjJTNkM3AuZHMlMjYlMjZtc2Nsa2lkJTNkYTg4ZTZhNmU0MWZiMTllMDJlOGIwMDNhZWNiN2E1YTE&rlid=a88e6a6e41fb19e02e8b003aecb7a5a1",
+      "note": "This is a Bing ad-click redirect to a doubleclick.net tracking link, not a Twenty CRM page at all."
+    },
+    {
+      "id": 14,
+      "name": "Front",
+      "field": "auth_method",
+      "verdict": "incorrect",
+      "claimed": "Front Api Key",
+      "note": "Front supports BOTH API tokens and OAuth2 (OAuth required for public/partner integrations). Claim only lists API key, omitting OAuth entirely."
+    },
+    {
+      "id": 14,
+      "name": "Front",
+      "field": "api_surface",
+      "verdict": "unsure",
+      "claimed": "Wrapped by Composio as 0 agent-callable tools (managed via Composio's toolkit catalog for 'front')",
+      "note": "Can't verify Composio's exact tool count independently."
+    },
+    {
+      "id": 14,
+      "name": "Front",
+      "field": "buildability_verdict",
+      "verdict": "incorrect",
+      "claimed": "Yes - already an agent toolkit today via Composio",
+      "note": "Internal contradiction: api_surface says the Composio toolkit has 0 agent-callable tools, yet buildability_verdict says 'Yes - already an agent toolkit today.' Zero tools does not support that verdict."
+    },
+    {
+      "id": 14,
+      "name": "Front",
+      "field": "blocker",
+      "verdict": "incorrect",
+      "claimed": "none",
+      "note": "Should not be 'none' if the Composio toolkit genuinely has 0 tools \u2014 that itself is the blocker (empty/stub toolkit) worth surfacing, not glossing over."
+    },
+    {
+      "id": 14,
+      "name": "Front",
+      "field": "evidence_url",
+      "verdict": "incorrect",
+      "claimed": "https://frontapp.com",
+      "note": "frontapp.com is the marketing homepage. Real docs: dev.frontapp.com."
+    },
+    {
+      "id": 15,
+      "name": "Pylon",
+      "field": "api_surface",
+      "verdict": "unsure",
+      "claimed": "Wrapped by Composio as 12 agent-callable tools (managed via Composio's toolkit catalog for 'pylon_mcp')",
+      "note": "Can't independently verify the '12 tools' figure."
+    },
+    {
+      "id": 18,
+      "name": "Help Scout",
+      "field": "api_surface",
+      "verdict": "unsure",
+      "claimed": "Wrapped by Composio as 129 agent-callable tools (managed via Composio's toolkit catalog for 'help_scout')",
+      "note": "Can't verify exact '129 tools' figure."
+    },
+    {
+      "id": 18,
+      "name": "Help Scout",
+      "field": "has_mcp",
+      "verdict": "unsure",
+      "claimed": true,
+      "note": "Not independently confirmed."
+    },
+    {
+      "id": 18,
+      "name": "Help Scout",
+      "field": "evidence_url",
+      "verdict": "incorrect",
+      "claimed": "https://www.helpscout.com",
+      "note": "helpscout.com is the marketing homepage. Real docs: developer.helpscout.com."
+    },
+    {
+      "id": 28,
+      "name": "WhatsApp Business",
+      "field": "auth_method",
+      "verdict": "unsure",
+      "claimed": "Whatsapp Oauth2 (also Whatsapp Auth)",
+      "note": "WhatsApp Business Platform primarily uses system-user access tokens issued via Meta Business Manager, not a standard OAuth2 consumer flow \u2014 'OAuth2' is an oversimplification."
+    },
+    {
+      "id": 28,
+      "name": "WhatsApp Business",
+      "field": "self_serve_or_gated",
+      "verdict": "incorrect",
+      "claimed": "self-serve",
+      "note": "Confirmed gated: requires Meta Business Verification, WhatsApp-specific app review for solution providers, phone number registration, and message-template approval before production use. Not self-serve."
+    },
+    {
+      "id": 28,
+      "name": "WhatsApp Business",
+      "field": "api_surface",
+      "verdict": "unsure",
+      "claimed": "Wrapped by Composio as 57 agent-callable tools (managed via Composio's toolkit catalog for 'whatsapp')",
+      "note": "Can't verify Composio's '57 tools' figure."
+    },
+    {
+      "id": 28,
+      "name": "WhatsApp Business",
+      "field": "has_mcp",
+      "verdict": "unsure",
+      "claimed": true,
+      "note": "Not independently confirmed."
+    },
+    {
+      "id": 28,
+      "name": "WhatsApp Business",
+      "field": "buildability_verdict",
+      "verdict": "unsure",
+      "claimed": "Yes - already an agent toolkit today via Composio",
+      "note": "Composio may indeed offer a toolkit, but calling it flatly buildable glosses over the real approval gate end users must clear."
+    },
+    {
+      "id": 28,
+      "name": "WhatsApp Business",
+      "field": "blocker",
+      "verdict": "incorrect",
+      "claimed": "none",
+      "note": "Should not be 'none' \u2014 Meta Business Verification + template approval is a real, documented blocker for production use."
+    },
+    {
+      "id": 28,
+      "name": "WhatsApp Business",
+      "field": "evidence_url",
+      "verdict": "incorrect",
+      "claimed": "https://web.whatsapp.com/",
+      "note": "web.whatsapp.com is the consumer web client, not developer docs. Real docs: developers.facebook.com/docs/whatsapp."
+    },
+    {
+      "id": 29,
+      "name": "Aircall",
+      "field": "has_mcp",
+      "verdict": "unsure",
+      "claimed": true,
+      "note": "Not independently confirmed."
+    },
+    {
+      "id": 29,
+      "name": "Aircall",
+      "field": "blocker",
+      "verdict": "incorrect",
+      "claimed": "no public API docs found",
+      "note": "Internal contradiction \u2014 blocker says 'no public API docs found' while evidence_url points straight at developer.aircall.io/api-references, which IS public API docs. These two fields disagree with each other."
+    },
+    {
+      "id": 30,
+      "name": "Vonage",
+      "field": "auth_method",
+      "verdict": "unsure",
+      "claimed": null,
+      "note": "Null \u2014 not scored, agent correctly declined to guess."
+    },
+    {
+      "id": 30,
+      "name": "Vonage",
+      "field": "self_serve_or_gated",
+      "verdict": "unsure",
+      "claimed": null,
+      "note": "Null \u2014 not scored."
+    },
+    {
+      "id": 30,
+      "name": "Vonage",
+      "field": "api_surface",
+      "verdict": "unsure",
+      "claimed": null,
+      "note": "Null \u2014 not scored."
+    },
+    {
+      "id": 30,
+      "name": "Vonage",
+      "field": "has_mcp",
+      "verdict": "unsure",
+      "claimed": null,
+      "note": "Null \u2014 not scored."
+    },
+    {
+      "id": 32,
+      "name": "Meta Ads",
+      "field": "self_serve_or_gated",
+      "verdict": "unsure",
+      "claimed": "self-serve",
+      "note": "Self-serve for testing on your own ad account, but production/scaled use requires App Review and Business Verification \u2014 the flat 'self-serve' label glosses over this."
+    },
+    {
+      "id": 32,
+      "name": "Meta Ads",
+      "field": "api_surface",
+      "verdict": "unsure",
+      "claimed": "Wrapped by Composio as 50 agent-callable tools (managed via Composio's toolkit catalog for 'metaads')",
+      "note": "Can't verify Composio's '50 tools' figure."
+    },
+    {
+      "id": 32,
+      "name": "Meta Ads",
+      "field": "has_mcp",
+      "verdict": "unsure",
+      "claimed": true,
+      "note": "Not independently confirmed."
+    },
+    {
+      "id": 32,
+      "name": "Meta Ads",
+      "field": "blocker",
+      "verdict": "incorrect",
+      "claimed": "none",
+      "note": "Should note the App Review / Business Verification requirement for anything beyond your own ad account \u2014 that's a real, documented gate."
+    },
+    {
+      "id": 32,
+      "name": "Meta Ads",
+      "field": "evidence_url",
+      "verdict": "incorrect",
+      "claimed": "https://business.meta.com/",
+      "note": "business.meta.com is a product marketing page, not developer docs. Real docs: developers.facebook.com/docs/marketing-apis."
+    },
+    {
+      "id": 36,
+      "name": "Klaviyo",
+      "field": "api_surface",
+      "verdict": "unsure",
+      "claimed": "Wrapped by Composio as 225 agent-callable tools (managed via Composio's toolkit catalog for 'klaviyo')",
+      "note": "Can't verify '225 tools' figure."
+    },
+    {
+      "id": 36,
+      "name": "Klaviyo",
+      "field": "has_mcp",
+      "verdict": "unsure",
+      "claimed": true,
+      "note": "Not independently confirmed."
+    },
+    {
+      "id": 36,
+      "name": "Klaviyo",
+      "field": "evidence_url",
+      "verdict": "incorrect",
+      "claimed": "https://www.klaviyo.com/",
+      "note": "klaviyo.com is the marketing homepage. Real docs: developers.klaviyo.com."
+    },
+    {
+      "id": 55,
+      "name": "Apify",
+      "field": "api_surface",
+      "verdict": "unsure",
+      "claimed": "Wrapped by Composio as 112 agent-callable tools (managed via Composio's toolkit catalog for 'apify')",
+      "note": "Can't verify '112 tools' figure."
+    },
+    {
+      "id": 55,
+      "name": "Apify",
+      "field": "has_mcp",
+      "verdict": "unsure",
+      "claimed": true,
+      "note": "Not independently confirmed, though Apify does publicize MCP support."
+    },
+    {
+      "id": 55,
+      "name": "Apify",
+      "field": "evidence_url",
+      "verdict": "incorrect",
+      "claimed": "https://apify.com/",
+      "note": "apify.com is the marketing homepage. Real docs: docs.apify.com."
+    },
+    {
+      "id": 65,
+      "name": "Supabase",
+      "field": "api_surface",
+      "verdict": "unsure",
+      "claimed": "Wrapped by Composio as 124 agent-callable tools (managed via Composio's toolkit catalog for 'supabase')",
+      "note": "Can't verify '124 tools' figure."
+    },
+    {
+      "id": 65,
+      "name": "Supabase",
+      "field": "evidence_url",
+      "verdict": "incorrect",
+      "claimed": "https://supabase.com",
+      "note": "supabase.com is the marketing homepage, not supabase.com/docs specifically."
+    },
+    {
+      "id": 70,
+      "name": "Sentry",
+      "field": "api_surface",
+      "verdict": "unsure",
+      "claimed": "Wrapped by Composio as 209 agent-callable tools (managed via Composio's toolkit catalog for 'sentry')",
+      "note": "Can't verify '209 tools' figure."
+    },
+    {
+      "id": 70,
+      "name": "Sentry",
+      "field": "evidence_url",
+      "verdict": "incorrect",
+      "claimed": "https://sentry.io/welcome/",
+      "note": "sentry.io/welcome is a marketing landing page. Real docs: docs.sentry.io/api."
+    },
+    {
+      "id": 76,
+      "name": "Monday.com",
+      "field": "has_mcp",
+      "verdict": "unsure",
+      "claimed": true,
+      "note": "Not independently confirmed."
+    },
+    {
+      "id": 82,
+      "name": "Plaid",
+      "field": "self_serve_or_gated",
+      "verdict": "incorrect",
+      "claimed": "gated",
+      "note": "Oversimplified: Plaid's Sandbox environment is instantly self-serve and free with no approval. Only Production access requires an application/review. Flatly labeling it 'gated' misses the real self-serve sandbox path, which matters for a buildability verdict."
+    },
+    {
+      "id": 82,
+      "name": "Plaid",
+      "field": "has_mcp",
+      "verdict": "unsure",
+      "claimed": true,
+      "note": "Not independently confirmed."
+    },
+    {
+      "id": 87,
+      "name": "Xero",
+      "field": "api_surface",
+      "verdict": "unsure",
+      "claimed": "Wrapped by Composio as 53 agent-callable tools (managed via Composio's toolkit catalog for 'xero')",
+      "note": "Can't verify '53 tools' figure."
+    },
+    {
+      "id": 87,
+      "name": "Xero",
+      "field": "has_mcp",
+      "verdict": "unsure",
+      "claimed": true,
+      "note": "Not independently confirmed."
+    },
+    {
+      "id": 87,
+      "name": "Xero",
+      "field": "evidence_url",
+      "verdict": "incorrect",
+      "claimed": "https://www.xero.com/",
+      "note": "xero.com is the marketing homepage. Real docs: developer.xero.com."
+    }
+  ]
+}

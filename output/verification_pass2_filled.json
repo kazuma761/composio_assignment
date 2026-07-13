@@ -1,0 +1,608 @@
+{
+  "_instructions": "For each app, open evidence_url (or search for the real docs if it's missing/broken) and fill in verdict.<field> with one of ('correct', 'incorrect', 'unsure'). Add a one-line correction in verdict_notes.<field> when marking incorrect. Leave a field's verdict as null if you skip it (it will be excluded from scoring, not counted as wrong).",
+  "checkable_fields": [
+    "auth_method",
+    "self_serve_or_gated",
+    "api_surface",
+    "has_mcp",
+    "buildability_verdict",
+    "blocker",
+    "evidence_url"
+  ],
+  "apps": [
+    {
+      "id": 4,
+      "name": "Attio",
+      "category": "CRM and Sales",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Attio Oauth",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 99 agent-callable tools (managed via Composio's toolkit catalog for 'attio')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://docs.composio.dev/toolkits/attio"
+      },
+      "verdict": {
+        "auth_method": "incorrect",
+        "self_serve_or_gated": "correct",
+        "api_surface": "unsure",
+        "has_mcp": "correct",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Still only lists OAuth; Attio's primary self-serve method is an API key from Workspace Settings > Developers, which is omitted.",
+        "self_serve_or_gated": "Confirmed self-serve.",
+        "api_surface": "Exact tool count still unverifiable independently.",
+        "has_mcp": "Attio has an official MCP server.",
+        "buildability_verdict": "Consistent with self-serve access.",
+        "blocker": "No blocker.",
+        "evidence_url": "FIXED \u2014 now docs.composio.dev/toolkits/attio, a real, relevant Composio toolkit page, not the marketing homepage."
+      }
+    },
+    {
+      "id": 5,
+      "name": "Twenty",
+      "category": "CRM and Sales",
+      "researched_via": "web",
+      "claimed": {
+        "auth_method": "OAuth",
+        "self_serve_or_gated": "unknown",
+        "api_surface": "standardized APIs and SDKs for location data and services",
+        "has_mcp": true,
+        "buildability_verdict": "Insufficient direct documentation to confirm buildability as a Composio agent toolkit",
+        "blocker": "No explicit documentation on authentication, API access model, or developer onboarding",
+        "evidence_url": "https://www.bing.com/aclick?ld=e8S-dr_rik1F4AGa6lw8de7TVUCUwfa6BMs5ho0T4tpM4V7xptlTmrvkllsqX5mZDGaxz4QJK5hKgCf7mAfKJcUr2gOPnZPeeBGp1YTN4IKImY6e_r_JmlftpGdLEJD393mYICxqVTlVc_7Ysm-a2kj7hTmr9syYUpeM30MjeWVSbUvBeH-HC4cCABvn11iVNnn_PL4w&u=aHR0cHMlM2ElMmYlMmZhZC5kb3VibGVjbGljay5uZXQlMmZzZWFyY2hhZHMlMmZsaW5rJTJmY2xpY2slM2ZsaWQlM2Q0MzcwMDA4MzIyMjU3OTU1OSUyNmRzX3Nfa3dnaWQlM2Q1ODcwMDAwOTAwNjM4Njg5MiUyNmRzX2FfY2lkJTNkNDAwNDkwMzk2JTI2ZHNfYV9jYWlkJTNkMjM1MzM2NDU1NjclMjZkc19hX2FnaWQlM2QxODc5Mjk2NzUyOTAlMjZkc19hX2xpZCUzZGt3ZC0xMzg2OTY1OTUxNTE0JTI2JTI2ZHNfZV9hZGlkJTNkNzc1ODQ1MTYzOTA2NTQlMjZkc19lX3RhcmdldF9pZCUzZGt3ZC03NzU4NDgzMjA1MTY1MyUzYWxvYy0xMTYwNzIlMjYlMjZkc19lX25ldHdvcmslM2RvJTI2ZHNfdXJsX3YlM2QyJTI2ZHNfZGVzdF91cmwlM2RodHRwcyUzYSUyZiUyZnd3dy5oZXJlLmNvbSUyZnBsYXRmb3JtJTNmY2lkJTNkRGV2ZWxvcGVyX0phdmFzY3JpcHQtQXBpLUJpbmctWVQtMC1EZXYtQVBBQy1JTi1tYXRjaHR5cGUlM2RwJTI2dXRtX3NvdXJjZSUzZEJpbmclMjZ1dG1fbWVkaXVtJTNkcHBjJTI2dXRtX2NhbXBhaWduJTNkUHJvZHVjdHNfQWx3YXlzT24lMjZ1dG1fdGVybSUzZGphdmFzY3JpcHQlMjUyMGFwaXMlMjZnY2xpZCUzZGE4OGU2YTZlNDFmYjE5ZTAyZThiMDAzYWVjYjdhNWExJTI2Z2Nsc3JjJTNkM3AuZHMlMjYlMjZtc2Nsa2lkJTNkYTg4ZTZhNmU0MWZiMTllMDJlOGIwMDNhZWNiN2E1YTE&rlid=a88e6a6e41fb19e02e8b003aecb7a5a1"
+      },
+      "verdict": {
+        "auth_method": "incorrect",
+        "self_serve_or_gated": "unsure",
+        "api_surface": "incorrect",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "incorrect"
+      },
+      "verdict_notes": {
+        "auth_method": "Unchanged \u2014 row wasn't reprocessed (web-sourced, no null fields to trigger re-research).",
+        "self_serve_or_gated": "Unchanged.",
+        "api_surface": "Unchanged \u2014 still describes HERE.com's location API, not Twenty CRM.",
+        "has_mcp": "Unchanged.",
+        "buildability_verdict": "Unchanged \u2014 still honestly flags insufficient docs.",
+        "blocker": "Unchanged \u2014 accurate description of the failure.",
+        "evidence_url": "UNCHANGED / NOT FIXED \u2014 still the broken Bing ad-click redirect. This fix only targeted Composio-sourced rows; the ad-link filter fix for web search was written earlier but this row was never re-triggered because it already has non-null fields (wrong ones) so needs_research() skips it. Needs an explicit reset like the Composio rows got."
+      }
+    },
+    {
+      "id": 12,
+      "name": "Intercom",
+      "category": "Support and Helpdesk",
+      "researched_via": "seed",
+      "claimed": {
+        "auth_method": "OAuth2 (also API key)",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Documented public REST API, moderate-broad",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://developers.intercom.com/"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "correct",
+        "has_mcp": "correct",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Unchanged, still correct.",
+        "self_serve_or_gated": "Unchanged.",
+        "api_surface": "Unchanged.",
+        "has_mcp": "Unchanged.",
+        "buildability_verdict": "Unchanged.",
+        "blocker": "Unchanged.",
+        "evidence_url": "Unchanged, already correct (seed data)."
+      }
+    },
+    {
+      "id": 14,
+      "name": "Front",
+      "category": "Support and Helpdesk",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Front Api Key",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 0 agent-callable tools (managed via Composio's toolkit catalog for 'front')",
+        "has_mcp": true,
+        "buildability_verdict": "Partial - Composio has a toolkit entry for this app but it currently exposes 0 agent-callable tools",
+        "blocker": "Composio toolkit exists but has no tools registered yet",
+        "evidence_url": "https://docs.composio.dev/toolkits/front"
+      },
+      "verdict": {
+        "auth_method": "incorrect",
+        "self_serve_or_gated": "correct",
+        "api_surface": "unsure",
+        "has_mcp": "correct",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Still only lists API Key; Front supports OAuth2 too, which is required for public/partner integrations.",
+        "self_serve_or_gated": "Confirmed self-serve dev account.",
+        "api_surface": "0-tool count still not independently verifiable, but at least now internally consistent.",
+        "has_mcp": "Front's own docs confirm MCP server support.",
+        "buildability_verdict": "FIXED \u2014 now correctly says 'Partial - toolkit exists but exposes 0 tools' instead of contradicting itself.",
+        "blocker": "FIXED \u2014 now correctly names the 0-tools gap as the blocker instead of falsely saying 'none'.",
+        "evidence_url": "FIXED \u2014 now docs.composio.dev/toolkits/front instead of the marketing homepage."
+      }
+    },
+    {
+      "id": 15,
+      "name": "Pylon",
+      "category": "Support and Helpdesk",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Pylon Mcp Dcr Oauth",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 12 agent-callable tools (managed via Composio's toolkit catalog for 'pylon_mcp')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://docs.composio.dev/toolkits/pylon_mcp"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "unsure",
+        "has_mcp": "correct",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Unchanged, plausible/correct DCR OAuth pattern.",
+        "self_serve_or_gated": "Unchanged.",
+        "api_surface": "Unchanged, tool count unverifiable.",
+        "has_mcp": "Unchanged.",
+        "buildability_verdict": "Unchanged.",
+        "blocker": "Unchanged.",
+        "evidence_url": "Changed from mcp.usepylon.com (Pylon's own real MCP domain, arguably even better evidence) to docs.composio.dev/toolkits/pylon_mcp (still real and relevant, just more generic). Net: still correct, but this is the one case where the blanket fix slightly reduced specificity \u2014 worth noting as a minor side effect in the report."
+      }
+    },
+    {
+      "id": 18,
+      "name": "Help Scout",
+      "category": "Support and Helpdesk",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Help Scout Oauth",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 129 agent-callable tools (managed via Composio's toolkit catalog for 'help_scout')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://docs.composio.dev/toolkits/help_scout"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "unsure",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Unchanged, correct.",
+        "self_serve_or_gated": "Unchanged.",
+        "api_surface": "Unchanged.",
+        "has_mcp": "Unchanged.",
+        "buildability_verdict": "Unchanged.",
+        "blocker": "Unchanged.",
+        "evidence_url": "FIXED \u2014 now docs.composio.dev/toolkits/help_scout instead of helpscout.com homepage."
+      }
+    },
+    {
+      "id": 28,
+      "name": "WhatsApp Business",
+      "category": "Communications and Messaging",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Whatsapp Oauth2 (also Whatsapp Auth)",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 57 agent-callable tools (managed via Composio's toolkit catalog for 'whatsapp')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://docs.composio.dev/toolkits/whatsapp"
+      },
+      "verdict": {
+        "auth_method": "unsure",
+        "self_serve_or_gated": "incorrect",
+        "api_surface": "unsure",
+        "has_mcp": "unsure",
+        "buildability_verdict": "unsure",
+        "blocker": "incorrect",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Unchanged \u2014 oversimplifies WhatsApp's system-user token model as plain OAuth2.",
+        "self_serve_or_gated": "UNCHANGED / NOT FIXED \u2014 still says self-serve. This is the documented, out-of-scope limitation: self_serve_or_gated is hardcoded to 'self-serve' for every Composio row by definition of Composio's own access model, and doesn't account for the underlying app's real-world gating (Meta Business Verification + template approval for WhatsApp).",
+        "api_surface": "Unchanged.",
+        "has_mcp": "Unchanged.",
+        "buildability_verdict": "Unchanged.",
+        "blocker": "UNCHANGED / NOT FIXED \u2014 still 'none', still misses the real Meta approval gate. Same root cause as self_serve_or_gated above.",
+        "evidence_url": "FIXED \u2014 now docs.composio.dev/toolkits/whatsapp instead of the consumer WhatsApp Web client URL."
+      }
+    },
+    {
+      "id": 29,
+      "name": "Aircall",
+      "category": "Communications and Messaging",
+      "researched_via": "web",
+      "claimed": {
+        "auth_method": "OAuth 2.0 and Basic Auth",
+        "self_serve_or_gated": "gated",
+        "api_surface": "REST API with endpoints for Users, Teams, Calls, Numbers, Messages, Contacts, Tags, Webhooks, Companies, Integrations, Participants, IVR Options, AI Voice Agent, Analytics, and Mobile features",
+        "has_mcp": true,
+        "buildability_verdict": "Aircall provides a comprehensive, authenticated REST API with OAuth 2.0 for partners and Basic Auth for customers, supporting broad functionality and webhook event subscriptions, enabling building a Composio agent toolkit integration.",
+        "blocker": "no public API docs found",
+        "evidence_url": "https://developer.aircall.io/api-references"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "correct",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "incorrect",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Unchanged, correct.",
+        "self_serve_or_gated": "Unchanged, correct.",
+        "api_surface": "Unchanged, correct.",
+        "has_mcp": "Unchanged.",
+        "buildability_verdict": "Unchanged.",
+        "blocker": "UNCHANGED / NOT FIXED \u2014 still contradicts evidence_url, which points straight at real API docs. This row wasn't touched by the composio-only reset.",
+        "evidence_url": "Unchanged, correct."
+      }
+    },
+    {
+      "id": 30,
+      "name": "Vonage",
+      "category": "Communications and Messaging",
+      "researched_via": "web",
+      "claimed": {
+        "auth_method": "API Key and Secret, Basic Authentication, JSON Web Token (JWT), Digest Authentication (for SIP Trunking)",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Vonage provides APIs for Conversations, Messages, Voice, Video, Verify, SIP Trunking, Number Insight, and more, accessible via REST endpoints with granular ACL control",
+        "has_mcp": null,
+        "buildability_verdict": "Vonage offers broad, self-serve API access with multiple authentication methods including API keys and JWTs, supporting granular permission control via ACLs, enabling buildability as a Composio agent toolkit",
+        "blocker": null,
+        "evidence_url": "https://developer.vonage.com/en/getting-started/concepts/authentication"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "correct",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "NEW \u2014 confirmed correct: Vonage supports API Key+Secret, Basic Auth, JWT (and Digest for SIP Trunking), matching developer.vonage.com exactly.",
+        "self_serve_or_gated": "NEW \u2014 confirmed correct: API key/secret are generated automatically on account creation, immediately available in the dashboard.",
+        "api_surface": "NEW \u2014 confirmed correct: matches Vonage's real multi-API surface (Messages, Voice, Video, Verify, SIP Trunking, Number Insight).",
+        "has_mcp": "Left null/not claimed by the agent \u2014 correctly not guessed.",
+        "buildability_verdict": "NEW \u2014 reasonable given confirmed self-serve, broad, well-documented API.",
+        "blocker": "NEW \u2014 correctly left as no fixed blocker.",
+        "evidence_url": "NEW \u2014 this is a genuine recovery from a total pass-1 failure (JS-rendered page, 0 usable text). This re-run's fetch succeeded and returned real, specific, correct documentation."
+      }
+    },
+    {
+      "id": 32,
+      "name": "Meta Ads",
+      "category": "Marketing, Ads, Email and Social",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Meta Marketing Api Oauth (also Meta Ads Api Key)",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 50 agent-callable tools (managed via Composio's toolkit catalog for 'metaads')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://docs.composio.dev/toolkits/metaads"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "unsure",
+        "api_surface": "unsure",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "incorrect",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Unchanged, correct.",
+        "self_serve_or_gated": "Unchanged \u2014 still glosses over the App Review / Business Verification gate needed for production/scaled use.",
+        "api_surface": "Unchanged.",
+        "has_mcp": "Unchanged.",
+        "buildability_verdict": "Unchanged, reasonable for own-account use.",
+        "blocker": "UNCHANGED / NOT FIXED \u2014 still doesn't mention the App Review requirement.",
+        "evidence_url": "FIXED \u2014 now docs.composio.dev/toolkits/metaads instead of business.meta.com marketing page."
+      }
+    },
+    {
+      "id": 36,
+      "name": "Klaviyo",
+      "category": "Marketing, Ads, Email and Social",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Klaviyo Oauth (also API key)",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 225 agent-callable tools (managed via Composio's toolkit catalog for 'klaviyo')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://docs.composio.dev/toolkits/klaviyo"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "unsure",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Unchanged, correct.",
+        "self_serve_or_gated": "Unchanged, correct.",
+        "api_surface": "Unchanged.",
+        "has_mcp": "Unchanged.",
+        "buildability_verdict": "Unchanged.",
+        "blocker": "Unchanged.",
+        "evidence_url": "FIXED \u2014 now docs.composio.dev/toolkits/klaviyo instead of klaviyo.com homepage."
+      }
+    },
+    {
+      "id": 55,
+      "name": "Apify",
+      "category": "Data, SEO and Scraping",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Apify Api Key",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 112 agent-callable tools (managed via Composio's toolkit catalog for 'apify')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://docs.composio.dev/toolkits/apify"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "unsure",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Unchanged, correct.",
+        "self_serve_or_gated": "Unchanged, correct.",
+        "api_surface": "Unchanged.",
+        "has_mcp": "Unchanged.",
+        "buildability_verdict": "Unchanged.",
+        "blocker": "Unchanged.",
+        "evidence_url": "FIXED \u2014 now docs.composio.dev/toolkits/apify instead of apify.com homepage."
+      }
+    },
+    {
+      "id": 65,
+      "name": "Supabase",
+      "category": "Developer, Infra and Data platforms",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Supabase Oauth (also Supabase Api Key)",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 124 agent-callable tools (managed via Composio's toolkit catalog for 'supabase')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://docs.composio.dev/toolkits/supabase"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "unsure",
+        "has_mcp": "correct",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Unchanged, correct.",
+        "self_serve_or_gated": "Unchanged, correct.",
+        "api_surface": "Unchanged.",
+        "has_mcp": "Unchanged, correct.",
+        "buildability_verdict": "Unchanged.",
+        "blocker": "Unchanged.",
+        "evidence_url": "FIXED \u2014 now docs.composio.dev/toolkits/supabase instead of supabase.com homepage."
+      }
+    },
+    {
+      "id": 70,
+      "name": "Sentry",
+      "category": "Developer, Infra and Data platforms",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Sentry Oauth2",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 209 agent-callable tools (managed via Composio's toolkit catalog for 'sentry')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://docs.composio.dev/toolkits/sentry"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "unsure",
+        "has_mcp": "correct",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Unchanged, correct.",
+        "self_serve_or_gated": "Unchanged, correct.",
+        "api_surface": "Unchanged.",
+        "has_mcp": "Unchanged, correct.",
+        "buildability_verdict": "Unchanged.",
+        "blocker": "Unchanged.",
+        "evidence_url": "FIXED \u2014 now docs.composio.dev/toolkits/sentry instead of sentry.io/welcome marketing page."
+      }
+    },
+    {
+      "id": 76,
+      "name": "Monday.com",
+      "category": "Productivity and Project Management",
+      "researched_via": "seed",
+      "claimed": {
+        "auth_method": "OAuth2 (also API token)",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Documented public GraphQL API, moderate",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://developer.monday.com/api-reference/docs"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "correct",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Unchanged, correct (seed).",
+        "self_serve_or_gated": "Unchanged.",
+        "api_surface": "Unchanged.",
+        "has_mcp": "Unchanged.",
+        "buildability_verdict": "Unchanged.",
+        "blocker": "Unchanged.",
+        "evidence_url": "Unchanged, already correct (seed data)."
+      }
+    },
+    {
+      "id": 82,
+      "name": "Plaid",
+      "category": "Finance and Fintech",
+      "researched_via": "web",
+      "claimed": {
+        "auth_method": "client_id and secret via request body or headers",
+        "self_serve_or_gated": "gated",
+        "api_surface": "JSON over HTTP POST endpoints with webhooks, including sandbox and production environments",
+        "has_mcp": true,
+        "buildability_verdict": "Plaid provides a comprehensive authenticated API with sandbox and production environments, client libraries, and OpenAPI specs, suitable for building a Composio agent toolkit integration.",
+        "blocker": null,
+        "evidence_url": "https://plaid.com/docs/api/"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "incorrect",
+        "api_surface": "correct",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Unchanged, correct.",
+        "self_serve_or_gated": "UNCHANGED / NOT FIXED \u2014 still flatly 'gated', still misses that Plaid's Sandbox is instantly self-serve and free; only Production requires review.",
+        "api_surface": "Unchanged, correct.",
+        "has_mcp": "Unchanged.",
+        "buildability_verdict": "Unchanged.",
+        "blocker": "Unchanged.",
+        "evidence_url": "Unchanged, already correct."
+      }
+    },
+    {
+      "id": 87,
+      "name": "Xero",
+      "category": "Finance and Fintech",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Xero Oauth",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 53 agent-callable tools (managed via Composio's toolkit catalog for 'xero')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://docs.composio.dev/toolkits/xero"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "unsure",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Unchanged, correct.",
+        "self_serve_or_gated": "Unchanged, correct.",
+        "api_surface": "Unchanged.",
+        "has_mcp": "Unchanged.",
+        "buildability_verdict": "Unchanged.",
+        "blocker": "Unchanged.",
+        "evidence_url": "FIXED \u2014 now docs.composio.dev/toolkits/xero instead of xero.com homepage."
+      }
+    },
+    {
+      "id": 95,
+      "name": "Reducto",
+      "category": "AI, Research and Media-native",
+      "researched_via": "web",
+      "claimed": {
+        "auth_method": "API key via Authorization header and environment variable REDUCTO_API_KEY",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Endpoints for file upload (/upload), document parsing (/parse), data extraction (/extract), document splitting (/split_document), classification (/classify_document), and editing (/edit_document); SDKs available for Python, Node.js, Go; MCP server integration",
+        "has_mcp": true,
+        "buildability_verdict": "Reducto provides authenticated API access with broad document parsing and extraction capabilities, SDKs, and MCP server support, making it suitable as a Composio agent toolkit.",
+        "blocker": null,
+        "evidence_url": "https://docs.reducto.ai/quickstart"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "correct",
+        "has_mcp": "correct",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Unchanged, correct.",
+        "self_serve_or_gated": "Unchanged, correct.",
+        "api_surface": "Unchanged, correct.",
+        "has_mcp": "Unchanged, correct.",
+        "buildability_verdict": "Unchanged.",
+        "blocker": "Unchanged.",
+        "evidence_url": "Unchanged, already correct."
+      }
+    }
+  ]
+}

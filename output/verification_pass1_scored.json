@@ -1,0 +1,200 @@
+{
+  "source_template": "output/verification_pass1_template.json",
+  "apps_reviewed": 18,
+  "fields_scored_total": 0,
+  "fields_correct_total": 0,
+  "fields_unsure_total": 0,
+  "accuracy_strict_unsure_as_wrong": null,
+  "accuracy_excluding_unsure": null,
+  "by_field": {
+    "auth_method": {
+      "correct": 0,
+      "incorrect": 0,
+      "unsure": 0,
+      "unscored": 18
+    },
+    "self_serve_or_gated": {
+      "correct": 0,
+      "incorrect": 0,
+      "unsure": 0,
+      "unscored": 18
+    },
+    "api_surface": {
+      "correct": 0,
+      "incorrect": 0,
+      "unsure": 0,
+      "unscored": 18
+    },
+    "has_mcp": {
+      "correct": 0,
+      "incorrect": 0,
+      "unsure": 0,
+      "unscored": 18
+    },
+    "buildability_verdict": {
+      "correct": 0,
+      "incorrect": 0,
+      "unsure": 0,
+      "unscored": 18
+    },
+    "blocker": {
+      "correct": 0,
+      "incorrect": 0,
+      "unsure": 0,
+      "unscored": 18
+    },
+    "evidence_url": {
+      "correct": 0,
+      "incorrect": 0,
+      "unsure": 0,
+      "unscored": 18
+    }
+  },
+  "per_app": [
+    {
+      "id": 4,
+      "name": "Attio",
+      "researched_via": "composio",
+      "fields_scored": 0,
+      "fields_correct": 0,
+      "accuracy": null
+    },
+    {
+      "id": 5,
+      "name": "Twenty",
+      "researched_via": "web",
+      "fields_scored": 0,
+      "fields_correct": 0,
+      "accuracy": null
+    },
+    {
+      "id": 12,
+      "name": "Intercom",
+      "researched_via": "seed",
+      "fields_scored": 0,
+      "fields_correct": 0,
+      "accuracy": null
+    },
+    {
+      "id": 14,
+      "name": "Front",
+      "researched_via": "composio",
+      "fields_scored": 0,
+      "fields_correct": 0,
+      "accuracy": null
+    },
+    {
+      "id": 15,
+      "name": "Pylon",
+      "researched_via": "composio",
+      "fields_scored": 0,
+      "fields_correct": 0,
+      "accuracy": null
+    },
+    {
+      "id": 18,
+      "name": "Help Scout",
+      "researched_via": "composio",
+      "fields_scored": 0,
+      "fields_correct": 0,
+      "accuracy": null
+    },
+    {
+      "id": 28,
+      "name": "WhatsApp Business",
+      "researched_via": "composio",
+      "fields_scored": 0,
+      "fields_correct": 0,
+      "accuracy": null
+    },
+    {
+      "id": 29,
+      "name": "Aircall",
+      "researched_via": "web",
+      "fields_scored": 0,
+      "fields_correct": 0,
+      "accuracy": null
+    },
+    {
+      "id": 30,
+      "name": "Vonage",
+      "researched_via": "web",
+      "fields_scored": 0,
+      "fields_correct": 0,
+      "accuracy": null
+    },
+    {
+      "id": 32,
+      "name": "Meta Ads",
+      "researched_via": "composio",
+      "fields_scored": 0,
+      "fields_correct": 0,
+      "accuracy": null
+    },
+    {
+      "id": 36,
+      "name": "Klaviyo",
+      "researched_via": "composio",
+      "fields_scored": 0,
+      "fields_correct": 0,
+      "accuracy": null
+    },
+    {
+      "id": 55,
+      "name": "Apify",
+      "researched_via": "composio",
+      "fields_scored": 0,
+      "fields_correct": 0,
+      "accuracy": null
+    },
+    {
+      "id": 65,
+      "name": "Supabase",
+      "researched_via": "composio",
+      "fields_scored": 0,
+      "fields_correct": 0,
+      "accuracy": null
+    },
+    {
+      "id": 70,
+      "name": "Sentry",
+      "researched_via": "composio",
+      "fields_scored": 0,
+      "fields_correct": 0,
+      "accuracy": null
+    },
+    {
+      "id": 76,
+      "name": "Monday.com",
+      "researched_via": "seed",
+      "fields_scored": 0,
+      "fields_correct": 0,
+      "accuracy": null
+    },
+    {
+      "id": 82,
+      "name": "Plaid",
+      "researched_via": "web",
+      "fields_scored": 0,
+      "fields_correct": 0,
+      "accuracy": null
+    },
+    {
+      "id": 87,
+      "name": "Xero",
+      "researched_via": "composio",
+      "fields_scored": 0,
+      "fields_correct": 0,
+      "accuracy": null
+    },
+    {
+      "id": 95,
+      "name": "Reducto",
+      "researched_via": "web",
+      "fields_scored": 0,
+      "fields_correct": 0,
+      "accuracy": null
+    }
+  ],
+  "misses": []
+}

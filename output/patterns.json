@@ -1,0 +1,304 @@
+{
+  "summary": {
+    "total_apps": 100,
+    "clean_rows": 88,
+    "errored_rows": 12,
+    "low_confidence_rows": 10
+  },
+  "auth_method_distribution": {
+    "OAuth2": 28,
+    "OAuth2 + API key": 26,
+    "API key / token": 24,
+    "other": 5,
+    "unknown": 4,
+    "Basic auth": 1
+  },
+  "auth_method_by_category": {
+    "CRM and Sales": {
+      "OAuth2": 6,
+      "OAuth2 + API key": 1,
+      "API key / token": 1
+    },
+    "Support and Helpdesk": {
+      "API key / token": 4,
+      "OAuth2 + API key": 3,
+      "OAuth2": 2
+    },
+    "Communications and Messaging": {
+      "OAuth2": 3,
+      "API key / token": 3,
+      "OAuth2 + API key": 1
+    },
+    "Marketing, Ads, Email and Social": {
+      "OAuth2": 4,
+      "OAuth2 + API key": 2,
+      "API key / token": 1,
+      "other": 1
+    },
+    "Ecommerce": {
+      "OAuth2": 4,
+      "OAuth2 + API key": 3,
+      "API key / token": 2,
+      "other": 1
+    },
+    "Data, SEO and Scraping": {
+      "API key / token": 7,
+      "Basic auth": 1,
+      "other": 1
+    },
+    "Developer, Infra and Data platforms": {
+      "OAuth2 + API key": 5,
+      "OAuth2": 3,
+      "API key / token": 2
+    },
+    "Productivity and Project Management": {
+      "OAuth2 + API key": 7,
+      "API key / token": 1,
+      "other": 1,
+      "OAuth2": 1
+    },
+    "Finance and Fintech": {
+      "OAuth2": 3,
+      "OAuth2 + API key": 2,
+      "other": 1,
+      "API key / token": 1,
+      "unknown": 1
+    },
+    "AI, Research and Media-native": {
+      "unknown": 3,
+      "OAuth2": 2,
+      "OAuth2 + API key": 2,
+      "API key / token": 2
+    }
+  },
+  "self_serve_vs_gated": {
+    "self_serve_count": 73,
+    "gated_count": 11,
+    "unknown_count": 4,
+    "gated_apps": [
+      "Clay",
+      "Consensus",
+      "Gladly",
+      "Magento (Adobe Commerce)",
+      "MongoDB Atlas",
+      "NotebookLM",
+      "Otter AI",
+      "Plaid",
+      "SE Ranking",
+      "Threads (Meta)",
+      "Waterfall.io"
+    ]
+  },
+  "self_serve_vs_gated_by_category": {
+    "AI, Research and Media-native": {
+      "self_serve": 5,
+      "gated": 3,
+      "unknown": 1,
+      "total": 9
+    },
+    "CRM and Sales": {
+      "self_serve": 7,
+      "gated": 0,
+      "unknown": 1,
+      "total": 8
+    },
+    "Communications and Messaging": {
+      "self_serve": 7,
+      "gated": 0,
+      "unknown": 0,
+      "total": 7
+    },
+    "Data, SEO and Scraping": {
+      "self_serve": 6,
+      "gated": 3,
+      "unknown": 0,
+      "total": 9
+    },
+    "Developer, Infra and Data platforms": {
+      "self_serve": 9,
+      "gated": 1,
+      "unknown": 0,
+      "total": 10
+    },
+    "Ecommerce": {
+      "self_serve": 8,
+      "gated": 1,
+      "unknown": 1,
+      "total": 10
+    },
+    "Finance and Fintech": {
+      "self_serve": 6,
+      "gated": 1,
+      "unknown": 1,
+      "total": 8
+    },
+    "Marketing, Ads, Email and Social": {
+      "self_serve": 7,
+      "gated": 1,
+      "unknown": 0,
+      "total": 8
+    },
+    "Productivity and Project Management": {
+      "self_serve": 10,
+      "gated": 0,
+      "unknown": 0,
+      "total": 10
+    },
+    "Support and Helpdesk": {
+      "self_serve": 8,
+      "gated": 1,
+      "unknown": 0,
+      "total": 9
+    }
+  },
+  "most_common_blockers": [
+    [
+      "research failed (search/fetch error, not an app-side blocker)",
+      12
+    ],
+    [
+      "Composio toolkit exists but has no tools registered yet",
+      2
+    ],
+    [
+      "No explicit documentation on authentication, API access model, or developer onboarding",
+      1
+    ],
+    [
+      "No documentation evidence of API access, authentication, or developer integration capabilities found",
+      1
+    ],
+    [
+      "Lack of explicit Threads API documentation and detailed access model",
+      1
+    ],
+    [
+      "API access restricted to Enterprise customers via account manager; no public self-serve API",
+      1
+    ]
+  ],
+  "easy_wins": [
+    "Ahrefs",
+    "Airtable",
+    "Apify",
+    "Asana",
+    "Attio",
+    "BigCommerce",
+    "Brex",
+    "Bright Data",
+    "ClickUp",
+    "Close",
+    "Cloudflare",
+    "Coda",
+    "DataForSEO",
+    "Datadog",
+    "Devin",
+    "Discord",
+    "Fathom",
+    "Firecrawl",
+    "Freshdesk",
+    "GitHub",
+    "Google Ads",
+    "Gorgias",
+    "Gumroad",
+    "Harvest",
+    "Help Scout",
+    "HubSpot",
+    "Intercom",
+    "Jira",
+    "Klaviyo",
+    "Linear",
+    "LinkedIn Ads",
+    "Mailchimp",
+    "Meta Ads",
+    "Monday.com",
+    "MrScraper",
+    "Neo4j",
+    "Netlify",
+    "Notion",
+    "Paygent Connect",
+    "Pipedrive",
+    "Plain",
+    "Pylon",
+    "QuickBooks",
+    "Ramp",
+    "Reducto",
+    "Salesforce",
+    "Salesforce Commerce Cloud",
+    "SendGrid",
+    "Sentry",
+    "Shopify",
+    "Slack",
+    "Smartsheet",
+    "Snowflake",
+    "Stripe",
+    "Supabase",
+    "Telegram",
+    "Twilio",
+    "Vercel",
+    "WhatsApp Business",
+    "Xero",
+    "YouTube Transcript",
+    "Zendesk",
+    "Zoho CRM",
+    "Zoho Cliq",
+    "fanbasis"
+  ],
+  "needs_outreach": [
+    "Clay",
+    "Consensus",
+    "Gladly",
+    "Magento (Adobe Commerce)",
+    "MongoDB Atlas",
+    "NotebookLM",
+    "Otter AI",
+    "Plaid",
+    "SE Ranking",
+    "Threads (Meta)",
+    "Waterfall.io"
+  ],
+  "needs_more_research": [
+    "Aircall",
+    "Binance",
+    "Copper",
+    "DealCloud",
+    "GoHighLevel",
+    "Grain",
+    "Lark (Larksuite)",
+    "LiveAgent",
+    "Pinterest",
+    "PitchBook",
+    "Pumble",
+    "Sherlock",
+    "Twenty",
+    "iPayX"
+  ],
+  "data_quality": {
+    "errored_apps": [
+      "Copper",
+      "DealCloud",
+      "LiveAgent",
+      "Lark (Larksuite)",
+      "Pumble",
+      "Aircall",
+      "GoHighLevel",
+      "Pinterest",
+      "Sherlock",
+      "Binance",
+      "iPayX",
+      "Grain"
+    ],
+    "low_confidence_apps": [
+      "Twenty",
+      "Copper",
+      "LiveAgent",
+      "Lark (Larksuite)",
+      "Pinterest",
+      "Sherlock",
+      "Binance",
+      "iPayX",
+      "PitchBook",
+      "Grain"
+    ]
+  }
+}

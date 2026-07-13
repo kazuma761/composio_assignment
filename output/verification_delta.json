@@ -1,0 +1,72 @@
+{
+  "pass1_accuracy": 0.5952,
+  "pass2_accuracy": 0.7143,
+  "delta": 0.1191000000000001,
+  "improved": [
+    {
+      "name": "Attio",
+      "pass1": 0.571,
+      "pass2": 0.714
+    },
+    {
+      "name": "Front",
+      "pass1": 0.286,
+      "pass2": 0.714
+    },
+    {
+      "name": "Help Scout",
+      "pass1": 0.571,
+      "pass2": 0.714
+    },
+    {
+      "name": "WhatsApp Business",
+      "pass1": 0.0,
+      "pass2": 0.143
+    },
+    {
+      "name": "Vonage",
+      "pass1": 0.429,
+      "pass2": 0.857
+    },
+    {
+      "name": "Meta Ads",
+      "pass1": 0.286,
+      "pass2": 0.429
+    },
+    {
+      "name": "Klaviyo",
+      "pass1": 0.571,
+      "pass2": 0.714
+    },
+    {
+      "name": "Apify",
+      "pass1": 0.571,
+      "pass2": 0.714
+    },
+    {
+      "name": "Supabase",
+      "pass1": 0.714,
+      "pass2": 0.857
+    },
+    {
+      "name": "Sentry",
+      "pass1": 0.714,
+      "pass2": 0.857
+    },
+    {
+      "name": "Xero",
+      "pass1": 0.571,
+      "pass2": 0.714
+    }
+  ],
+  "regressed": [],
+  "unchanged": [
+    "Twenty",
+    "Intercom",
+    "Pylon",
+    "Aircall",
+    "Monday.com",
+    "Plaid",
+    "Reducto"
+  ]
+}

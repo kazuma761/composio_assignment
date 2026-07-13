@@ -1,0 +1,608 @@
+{
+  "_instructions": "For each app, open evidence_url (or search for the real docs if it's missing/broken) and fill in verdict.<field> with one of ('correct', 'incorrect', 'unsure'). Add a one-line correction in verdict_notes.<field> when marking incorrect. Leave a field's verdict as null if you skip it (it will be excluded from scoring, not counted as wrong).",
+  "checkable_fields": [
+    "auth_method",
+    "self_serve_or_gated",
+    "api_surface",
+    "has_mcp",
+    "buildability_verdict",
+    "blocker",
+    "evidence_url"
+  ],
+  "apps": [
+    {
+      "id": 4,
+      "name": "Attio",
+      "category": "CRM and Sales",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Attio Oauth",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 99 agent-callable tools (managed via Composio's toolkit catalog for 'attio')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://attio.com"
+      },
+      "verdict": {
+        "auth_method": "incorrect",
+        "self_serve_or_gated": "correct",
+        "api_surface": "unsure",
+        "has_mcp": "correct",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "incorrect"
+      },
+      "verdict_notes": {
+        "auth_method": "Attio supports API key (primary self-serve method, generated in Workspace Settings > Developers) AND OAuth2 for published apps. Claim only lists OAuth, missing the API key path most self-serve devs actually use.",
+        "self_serve_or_gated": "Confirmed: any workspace admin can generate an API key directly, free tier 1,000 req/month, no approval needed.",
+        "api_surface": "Can't independently verify the exact '99 tools' count without Composio catalog access.",
+        "has_mcp": "Attio has an official MCP server (docs.attio.com/mcp) confirmed via developer platform page.",
+        "buildability_verdict": "Confirmed buildable \u2014 real self-serve API key auth plus official MCP.",
+        "blocker": "No real blocker found.",
+        "evidence_url": "attio.com is the marketing homepage. Real docs are at developers.attio.com / docs.attio.com."
+      }
+    },
+    {
+      "id": 5,
+      "name": "Twenty",
+      "category": "CRM and Sales",
+      "researched_via": "web",
+      "claimed": {
+        "auth_method": "OAuth",
+        "self_serve_or_gated": "unknown",
+        "api_surface": "standardized APIs and SDKs for location data and services",
+        "has_mcp": true,
+        "buildability_verdict": "Insufficient direct documentation to confirm buildability as a Composio agent toolkit",
+        "blocker": "No explicit documentation on authentication, API access model, or developer onboarding",
+        "evidence_url": "https://www.bing.com/aclick?ld=e8S-dr_rik1F4AGa6lw8de7TVUCUwfa6BMs5ho0T4tpM4V7xptlTmrvkllsqX5mZDGaxz4QJK5hKgCf7mAfKJcUr2gOPnZPeeBGp1YTN4IKImY6e_r_JmlftpGdLEJD393mYICxqVTlVc_7Ysm-a2kj7hTmr9syYUpeM30MjeWVSbUvBeH-HC4cCABvn11iVNnn_PL4w&u=aHR0cHMlM2ElMmYlMmZhZC5kb3VibGVjbGljay5uZXQlMmZzZWFyY2hhZHMlMmZsaW5rJTJmY2xpY2slM2ZsaWQlM2Q0MzcwMDA4MzIyMjU3OTU1OSUyNmRzX3Nfa3dnaWQlM2Q1ODcwMDAwOTAwNjM4Njg5MiUyNmRzX2FfY2lkJTNkNDAwNDkwMzk2JTI2ZHNfYV9jYWlkJTNkMjM1MzM2NDU1NjclMjZkc19hX2FnaWQlM2QxODc5Mjk2NzUyOTAlMjZkc19hX2xpZCUzZGt3ZC0xMzg2OTY1OTUxNTE0JTI2JTI2ZHNfZV9hZGlkJTNkNzc1ODQ1MTYzOTA2NTQlMjZkc19lX3RhcmdldF9pZCUzZGt3ZC03NzU4NDgzMjA1MTY1MyUzYWxvYy0xMTYwNzIlMjYlMjZkc19lX25ldHdvcmslM2RvJTI2ZHNfdXJsX3YlM2QyJTI2ZHNfZGVzdF91cmwlM2RodHRwcyUzYSUyZiUyZnd3dy5oZXJlLmNvbSUyZnBsYXRmb3JtJTNmY2lkJTNkRGV2ZWxvcGVyX0phdmFzY3JpcHQtQXBpLUJpbmctWVQtMC1EZXYtQVBBQy1JTi1tYXRjaHR5cGUlM2RwJTI2dXRtX3NvdXJjZSUzZEJpbmclMjZ1dG1fbWVkaXVtJTNkcHBjJTI2dXRtX2NhbXBhaWduJTNkUHJvZHVjdHNfQWx3YXlzT24lMjZ1dG1fdGVybSUzZGphdmFzY3JpcHQlMjUyMGFwaXMlMjZnY2xpZCUzZGE4OGU2YTZlNDFmYjE5ZTAyZThiMDAzYWVjYjdhNWExJTI2Z2Nsc3JjJTNkM3AuZHMlMjYlMjZtc2Nsa2lkJTNkYTg4ZTZhNmU0MWZiMTllMDJlOGIwMDNhZWNiN2E1YTE&rlid=a88e6a6e41fb19e02e8b003aecb7a5a1"
+      },
+      "verdict": {
+        "auth_method": "incorrect",
+        "self_serve_or_gated": "unsure",
+        "api_surface": "incorrect",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "incorrect"
+      },
+      "verdict_notes": {
+        "auth_method": "Ungrounded \u2014 evidence_url doesn't even resolve to Twenty's site.",
+        "self_serve_or_gated": "Agent honestly flagged 'unknown' given it had no real evidence; can't score as correct/incorrect since nothing was actually checked.",
+        "api_surface": "Claimed 'standardized APIs and SDKs for location data and services' \u2014 that's HERE.com's API, not Twenty CRM at all. Fully ungrounded hallucination from a bad source page.",
+        "has_mcp": "No real evidence gathered either way.",
+        "buildability_verdict": "Agent's own verdict correctly flagged insufficient documentation rather than fabricating confidence.",
+        "blocker": "Accurately described as lacking direct documentation \u2014 matches what happened.",
+        "evidence_url": "This is a Bing ad-click redirect to a doubleclick.net tracking link, not a Twenty CRM page at all."
+      }
+    },
+    {
+      "id": 12,
+      "name": "Intercom",
+      "category": "Support and Helpdesk",
+      "researched_via": "seed",
+      "claimed": {
+        "auth_method": "OAuth2 (also API key)",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Documented public REST API, moderate-broad",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://developers.intercom.com/"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "correct",
+        "has_mcp": "correct",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Intercom supports OAuth2 and API keys per developers.intercom.com.",
+        "self_serve_or_gated": "Free developer workspace, self-serve.",
+        "api_surface": "Documented public REST API, moderate-broad \u2014 matches developers.intercom.com.",
+        "has_mcp": "Intercom has an official MCP server.",
+        "buildability_verdict": "Consistent with the above.",
+        "blocker": "No blocker.",
+        "evidence_url": "developers.intercom.com is the real, correct docs root."
+      }
+    },
+    {
+      "id": 14,
+      "name": "Front",
+      "category": "Support and Helpdesk",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Front Api Key",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 0 agent-callable tools (managed via Composio's toolkit catalog for 'front')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://frontapp.com"
+      },
+      "verdict": {
+        "auth_method": "incorrect",
+        "self_serve_or_gated": "correct",
+        "api_surface": "unsure",
+        "has_mcp": "correct",
+        "buildability_verdict": "incorrect",
+        "blocker": "incorrect",
+        "evidence_url": "incorrect"
+      },
+      "verdict_notes": {
+        "auth_method": "Front supports BOTH API tokens and OAuth2 (OAuth required for public/partner integrations). Claim only lists API key, omitting OAuth entirely.",
+        "self_serve_or_gated": "Confirmed: free developer account at dev.frontapp.com, API token self-serve in minutes.",
+        "api_surface": "Can't verify Composio's exact tool count independently.",
+        "has_mcp": "Front's own docs confirm an MCP server offering ('MCP server allows you to connect Front data... to clients like Claude, ChatGPT').",
+        "buildability_verdict": "Internal contradiction: api_surface says the Composio toolkit has 0 agent-callable tools, yet buildability_verdict says 'Yes - already an agent toolkit today.' Zero tools does not support that verdict.",
+        "blocker": "Should not be 'none' if the Composio toolkit genuinely has 0 tools \u2014 that itself is the blocker (empty/stub toolkit) worth surfacing, not glossing over.",
+        "evidence_url": "frontapp.com is the marketing homepage. Real docs: dev.frontapp.com."
+      }
+    },
+    {
+      "id": 15,
+      "name": "Pylon",
+      "category": "Support and Helpdesk",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Pylon Mcp Dcr Oauth",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 12 agent-callable tools (managed via Composio's toolkit catalog for 'pylon_mcp')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://mcp.usepylon.com"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "unsure",
+        "has_mcp": "correct",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "'Dynamic Client Registration OAuth' is a legitimate, specific pattern for native MCP OAuth flows and matches Pylon's MCP-first design.",
+        "self_serve_or_gated": "No evidence of a gate; Pylon MCP is publicly documented.",
+        "api_surface": "Can't independently verify the '12 tools' figure.",
+        "has_mcp": "Confirmed by evidence_url itself \u2014 mcp.usepylon.com is Pylon's real, dedicated MCP subdomain.",
+        "buildability_verdict": "Consistent with above.",
+        "blocker": "No blocker found.",
+        "evidence_url": "mcp.usepylon.com is a real, directly relevant URL \u2014 this is one of the few Composio rows where evidence isn't just the homepage."
+      }
+    },
+    {
+      "id": 18,
+      "name": "Help Scout",
+      "category": "Support and Helpdesk",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Help Scout Oauth",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 129 agent-callable tools (managed via Composio's toolkit catalog for 'help_scout')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://www.helpscout.com"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "unsure",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "incorrect"
+      },
+      "verdict_notes": {
+        "auth_method": "Help Scout's Mailbox API uses OAuth2.",
+        "self_serve_or_gated": "Free developer account, well-documented self-serve OAuth app creation.",
+        "api_surface": "Can't verify exact '129 tools' figure.",
+        "has_mcp": "Not independently confirmed.",
+        "buildability_verdict": "Consistent with self-serve OAuth + documented API.",
+        "blocker": "No blocker found.",
+        "evidence_url": "helpscout.com is the marketing homepage. Real docs: developer.helpscout.com."
+      }
+    },
+    {
+      "id": 28,
+      "name": "WhatsApp Business",
+      "category": "Communications and Messaging",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Whatsapp Oauth2 (also Whatsapp Auth)",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 57 agent-callable tools (managed via Composio's toolkit catalog for 'whatsapp')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://web.whatsapp.com/"
+      },
+      "verdict": {
+        "auth_method": "unsure",
+        "self_serve_or_gated": "incorrect",
+        "api_surface": "unsure",
+        "has_mcp": "unsure",
+        "buildability_verdict": "unsure",
+        "blocker": "incorrect",
+        "evidence_url": "incorrect"
+      },
+      "verdict_notes": {
+        "auth_method": "WhatsApp Business Platform primarily uses system-user access tokens issued via Meta Business Manager, not a standard OAuth2 consumer flow \u2014 'OAuth2' is an oversimplification.",
+        "self_serve_or_gated": "Confirmed gated: requires Meta Business Verification, WhatsApp-specific app review for solution providers, phone number registration, and message-template approval before production use. Not self-serve.",
+        "api_surface": "Can't verify Composio's '57 tools' figure.",
+        "has_mcp": "Not independently confirmed.",
+        "buildability_verdict": "Composio may indeed offer a toolkit, but calling it flatly buildable glosses over the real approval gate end users must clear.",
+        "blocker": "Should not be 'none' \u2014 Meta Business Verification + template approval is a real, documented blocker for production use.",
+        "evidence_url": "web.whatsapp.com is the consumer web client, not developer docs. Real docs: developers.facebook.com/docs/whatsapp."
+      }
+    },
+    {
+      "id": 29,
+      "name": "Aircall",
+      "category": "Communications and Messaging",
+      "researched_via": "web",
+      "claimed": {
+        "auth_method": "OAuth 2.0 and Basic Auth",
+        "self_serve_or_gated": "gated",
+        "api_surface": "REST API with endpoints for Users, Teams, Calls, Numbers, Messages, Contacts, Tags, Webhooks, Companies, Integrations, Participants, IVR Options, AI Voice Agent, Analytics, and Mobile features",
+        "has_mcp": true,
+        "buildability_verdict": "Aircall provides a comprehensive, authenticated REST API with OAuth 2.0 for partners and Basic Auth for customers, supporting broad functionality and webhook event subscriptions, enabling building a Composio agent toolkit integration.",
+        "blocker": "no public API docs found",
+        "evidence_url": "https://developer.aircall.io/api-references"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "correct",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "incorrect",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Aircall API docs confirm OAuth2 (partners) and Basic Auth (customers).",
+        "self_serve_or_gated": "Aircall gates OAuth partner integrations behind a review process; matches 'gated' verdict.",
+        "api_surface": "Matches the broad endpoint list on developer.aircall.io.",
+        "has_mcp": "Not independently confirmed.",
+        "buildability_verdict": "Reasonable given a real documented REST API exists.",
+        "blocker": "Internal contradiction \u2014 blocker says 'no public API docs found' while evidence_url points straight at developer.aircall.io/api-references, which IS public API docs. These two fields disagree with each other.",
+        "evidence_url": "developer.aircall.io/api-references is a real, relevant docs page."
+      }
+    },
+    {
+      "id": 30,
+      "name": "Vonage",
+      "category": "Communications and Messaging",
+      "researched_via": "web",
+      "claimed": {
+        "auth_method": null,
+        "self_serve_or_gated": null,
+        "api_surface": null,
+        "has_mcp": null,
+        "buildability_verdict": "Unknown - docs page had insufficient text",
+        "blocker": "empty or JS-rendered docs page",
+        "evidence_url": "https://developer.vonage.com/en/documentation"
+      },
+      "verdict": {
+        "auth_method": "unsure",
+        "self_serve_or_gated": "unsure",
+        "api_surface": "unsure",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Null \u2014 not scored, agent correctly declined to guess.",
+        "self_serve_or_gated": "Null \u2014 not scored.",
+        "api_surface": "Null \u2014 not scored.",
+        "has_mcp": "Null \u2014 not scored.",
+        "buildability_verdict": "Honestly reported as unknown rather than fabricated \u2014 this is the right failure behavior.",
+        "blocker": "Accurately describes a JS-rendered docs page defeating the fetcher \u2014 this is a genuine, honestly-reported failure mode worth keeping in the write-up.",
+        "evidence_url": "developer.vonage.com/en/documentation is the real docs root, even though the fetcher couldn't extract text from it."
+      }
+    },
+    {
+      "id": 32,
+      "name": "Meta Ads",
+      "category": "Marketing, Ads, Email and Social",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Meta Marketing Api Oauth (also Meta Ads Api Key)",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 50 agent-callable tools (managed via Composio's toolkit catalog for 'metaads')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://business.meta.com/"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "unsure",
+        "api_surface": "unsure",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "incorrect",
+        "evidence_url": "incorrect"
+      },
+      "verdict_notes": {
+        "auth_method": "Meta Marketing API uses OAuth2 (Ads Management Standard Access) plus long-lived tokens; matches claim.",
+        "self_serve_or_gated": "Self-serve for testing on your own ad account, but production/scaled use requires App Review and Business Verification \u2014 the flat 'self-serve' label glosses over this.",
+        "api_surface": "Can't verify Composio's '50 tools' figure.",
+        "has_mcp": "Not independently confirmed.",
+        "buildability_verdict": "Reasonable for own-account use case, though production-scale caveat should be surfaced.",
+        "blocker": "Should note the App Review / Business Verification requirement for anything beyond your own ad account \u2014 that's a real, documented gate.",
+        "evidence_url": "business.meta.com is a product marketing page, not developer docs. Real docs: developers.facebook.com/docs/marketing-apis."
+      }
+    },
+    {
+      "id": 36,
+      "name": "Klaviyo",
+      "category": "Marketing, Ads, Email and Social",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Klaviyo Oauth (also API key)",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 225 agent-callable tools (managed via Composio's toolkit catalog for 'klaviyo')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://www.klaviyo.com/"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "unsure",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "incorrect"
+      },
+      "verdict_notes": {
+        "auth_method": "Klaviyo supports both private API keys and OAuth2 for public integrations.",
+        "self_serve_or_gated": "Free account, self-serve private API key generation.",
+        "api_surface": "Can't verify '225 tools' figure.",
+        "has_mcp": "Not independently confirmed.",
+        "buildability_verdict": "Consistent with self-serve API key access.",
+        "blocker": "No blocker found.",
+        "evidence_url": "klaviyo.com is the marketing homepage. Real docs: developers.klaviyo.com."
+      }
+    },
+    {
+      "id": 55,
+      "name": "Apify",
+      "category": "Data, SEO and Scraping",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Apify Api Key",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 112 agent-callable tools (managed via Composio's toolkit catalog for 'apify')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://apify.com/"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "unsure",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "incorrect"
+      },
+      "verdict_notes": {
+        "auth_method": "Apify uses API tokens (self-serve, found in account settings).",
+        "self_serve_or_gated": "Free tier, instant self-serve API token.",
+        "api_surface": "Can't verify '112 tools' figure.",
+        "has_mcp": "Not independently confirmed, though Apify does publicize MCP support.",
+        "buildability_verdict": "Consistent with self-serve API token access.",
+        "blocker": "No blocker found.",
+        "evidence_url": "apify.com is the marketing homepage. Real docs: docs.apify.com."
+      }
+    },
+    {
+      "id": 65,
+      "name": "Supabase",
+      "category": "Developer, Infra and Data platforms",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Supabase Oauth (also Supabase Api Key)",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 124 agent-callable tools (managed via Composio's toolkit catalog for 'supabase')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://supabase.com"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "unsure",
+        "has_mcp": "correct",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "incorrect"
+      },
+      "verdict_notes": {
+        "auth_method": "Supabase supports personal access tokens (API key) and OAuth2 apps.",
+        "self_serve_or_gated": "Free tier, self-serve token generation from dashboard.",
+        "api_surface": "Can't verify '124 tools' figure.",
+        "has_mcp": "Supabase has a well-publicized official MCP server.",
+        "buildability_verdict": "Consistent with above.",
+        "blocker": "No blocker found.",
+        "evidence_url": "supabase.com is the marketing homepage, not supabase.com/docs specifically."
+      }
+    },
+    {
+      "id": 70,
+      "name": "Sentry",
+      "category": "Developer, Infra and Data platforms",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Sentry Oauth2",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 209 agent-callable tools (managed via Composio's toolkit catalog for 'sentry')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://sentry.io/welcome/"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "unsure",
+        "has_mcp": "correct",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "incorrect"
+      },
+      "verdict_notes": {
+        "auth_method": "Sentry's API uses OAuth2 (internal integrations use tokens too, but OAuth2 is the documented primary path).",
+        "self_serve_or_gated": "Free tier, self-serve token/OAuth app creation.",
+        "api_surface": "Can't verify '209 tools' figure.",
+        "has_mcp": "Sentry has an official MCP server (publicized).",
+        "buildability_verdict": "Consistent with above.",
+        "blocker": "No blocker found.",
+        "evidence_url": "sentry.io/welcome is a marketing landing page. Real docs: docs.sentry.io/api."
+      }
+    },
+    {
+      "id": 76,
+      "name": "Monday.com",
+      "category": "Productivity and Project Management",
+      "researched_via": "seed",
+      "claimed": {
+        "auth_method": "OAuth2 (also API token)",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Documented public GraphQL API, moderate",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://developer.monday.com/api-reference/docs"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "correct",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "Monday.com supports OAuth2 and personal API tokens.",
+        "self_serve_or_gated": "Free account, self-serve token generation.",
+        "api_surface": "GraphQL API, matches developer.monday.com.",
+        "has_mcp": "Not independently confirmed.",
+        "buildability_verdict": "Consistent with above.",
+        "blocker": "No blocker found.",
+        "evidence_url": "developer.monday.com/api-reference/docs is the real, correct docs page \u2014 this seed row is clean."
+      }
+    },
+    {
+      "id": 82,
+      "name": "Plaid",
+      "category": "Finance and Fintech",
+      "researched_via": "web",
+      "claimed": {
+        "auth_method": "client_id and secret via request body or headers",
+        "self_serve_or_gated": "gated",
+        "api_surface": "JSON over HTTP POST endpoints with webhooks, including sandbox and production environments",
+        "has_mcp": true,
+        "buildability_verdict": "Plaid provides a comprehensive authenticated API with sandbox and production environments, client libraries, and OpenAPI specs, suitable for building a Composio agent toolkit integration.",
+        "blocker": null,
+        "evidence_url": "https://plaid.com/docs/api/"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "incorrect",
+        "api_surface": "correct",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "client_id/secret is accurate for Plaid's API auth.",
+        "self_serve_or_gated": "Oversimplified: Plaid's Sandbox environment is instantly self-serve and free with no approval. Only Production access requires an application/review. Flatly labeling it 'gated' misses the real self-serve sandbox path, which matters for a buildability verdict.",
+        "api_surface": "Matches Plaid's documented REST/webhook model.",
+        "has_mcp": "Not independently confirmed.",
+        "buildability_verdict": "Reasonable given a real, well-documented API with sandbox access.",
+        "blocker": "Correctly left as no fixed blocker given sandbox self-serve exists.",
+        "evidence_url": "plaid.com/docs/api/ is real, correct developer documentation."
+      }
+    },
+    {
+      "id": 87,
+      "name": "Xero",
+      "category": "Finance and Fintech",
+      "researched_via": "composio",
+      "claimed": {
+        "auth_method": "Xero Oauth",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Wrapped by Composio as 53 agent-callable tools (managed via Composio's toolkit catalog for 'xero')",
+        "has_mcp": true,
+        "buildability_verdict": "Yes - already an agent toolkit today via Composio",
+        "blocker": "none",
+        "evidence_url": "https://www.xero.com/"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "unsure",
+        "has_mcp": "unsure",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "incorrect"
+      },
+      "verdict_notes": {
+        "auth_method": "Xero uses OAuth2 exclusively for its API \u2014 matches claim (no separate API-key path, which is itself worth noting since the claim implies it's the only method, which is accurate).",
+        "self_serve_or_gated": "Free developer account, self-serve OAuth app registration.",
+        "api_surface": "Can't verify '53 tools' figure.",
+        "has_mcp": "Not independently confirmed.",
+        "buildability_verdict": "Consistent with above.",
+        "blocker": "No blocker found.",
+        "evidence_url": "xero.com is the marketing homepage. Real docs: developer.xero.com."
+      }
+    },
+    {
+      "id": 95,
+      "name": "Reducto",
+      "category": "AI, Research and Media-native",
+      "researched_via": "web",
+      "claimed": {
+        "auth_method": "API key via Authorization header and environment variable REDUCTO_API_KEY",
+        "self_serve_or_gated": "self-serve",
+        "api_surface": "Endpoints for file upload (/upload), document parsing (/parse), data extraction (/extract), document splitting (/split_document), classification (/classify_document), and editing (/edit_document); SDKs in Python, Node.js, Go; CLI and MCP server integration",
+        "has_mcp": true,
+        "buildability_verdict": "Reducto provides a comprehensive authenticated API with multiple endpoints and SDKs, plus MCP server support, enabling it to serve as a Composio agent toolkit",
+        "blocker": null,
+        "evidence_url": "https://docs.reducto.ai/quickstart"
+      },
+      "verdict": {
+        "auth_method": "correct",
+        "self_serve_or_gated": "correct",
+        "api_surface": "correct",
+        "has_mcp": "correct",
+        "buildability_verdict": "correct",
+        "blocker": "correct",
+        "evidence_url": "correct"
+      },
+      "verdict_notes": {
+        "auth_method": "API key via Authorization header, matches docs.reducto.ai.",
+        "self_serve_or_gated": "Self-serve signup and key generation.",
+        "api_surface": "Endpoint list matches Reducto's documented API surface.",
+        "has_mcp": "Reducto documents MCP server support.",
+        "buildability_verdict": "Consistent with above, and this is a genuinely clean web-sourced row.",
+        "blocker": "No blocker found.",
+        "evidence_url": "docs.reducto.ai/quickstart is real, correct, and specific \u2014 this web-sourced row is clean end to end."
+      }
+    }
+  ]
+}

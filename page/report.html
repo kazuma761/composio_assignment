@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Composio Audit Assignment Report</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --ink: #152033;
+      --muted: #64748b;
+      --line: #d8dee9;
+      --panel: #ffffff;
+      --soft: #eef3f8;
+      --blue: #2563eb;
+      --green: #16a34a;
+      --amber: #d97706;
+      --red: #dc2626;
+      --purple: #7c3aed;
+      --teal: #0f766e;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Arial, sans-serif; }
+    .wrap { max-width: 1220px; margin: 0 auto; padding: 28px 20px 56px; }
+    h1 { margin: 0; font-size: 30px; line-height: 1.15; letter-spacing: 0; }
+    h2 { margin: 0 0 10px; font-size: 20px; line-height: 1.25; letter-spacing: 0; }
+    h3 { margin: 0 0 8px; font-size: 15px; letter-spacing: 0; }
+    p { color: var(--muted); line-height: 1.55; margin: 0 0 12px; }
+    code { background: #edf2f7; border: 1px solid var(--line); border-radius: 5px; padding: 1px 5px; }
+    .top { display: grid; grid-template-columns: 1.5fr .8fr; gap: 18px; align-items: start; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px; box-shadow: 0 8px 22px rgba(15, 23, 42, .05); }
+    .band { margin-top: 18px; }
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px; }
+    .kpi { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
+    .kpi strong { display: block; font-size: 26px; line-height: 1; }
+    .kpi span { display: block; color: var(--muted); font-size: 12px; margin-top: 7px; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .chart-box { min-height: 420px; }
+    .chart-box.tall { min-height: 560px; }
+    .legend-note { font-size: 12px; color: var(--muted); margin-top: 8px; }
+    .flow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .node { background: #ffffff; border: 1px solid var(--line); border-radius: 7px; padding: 9px 11px; font-size: 13px; font-weight: 650; }
+    .arrow { color: var(--muted); font-weight: 800; }
+    .step-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+    .step { border: 1px solid var(--line); background: #fbfcfe; border-radius: 8px; padding: 13px; }
+    .step b { display: block; margin-bottom: 4px; }
+    .step span { color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .callout { border-left: 4px solid var(--amber); background: #fff8eb; padding: 13px 14px; border-radius: 6px; }
+    .callout strong { display: block; margin-bottom: 4px; }
+    .table-wrap { overflow: auto; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+    table { border-collapse: collapse; width: 100%; min-width: 820px; }
+    th, td { padding: 9px 10px; border-bottom: 1px solid #e8edf3; font-size: 12px; text-align: left; vertical-align: top; }
+    th { background: #f1f5f9; color: #334155; position: sticky; top: 0; }
+    .table-note { color: var(--muted); font-size: 12px; margin-top: 8px; }
+    details { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; margin-top: 10px; }
+    summary { cursor: pointer; font-weight: 750; }
+    svg { display: block; width: 100%; height: auto; }
+    .axis text, .label { fill: #475569; font-size: 13px; }
+    .title-small { fill: #334155; font-weight: 750; font-size: 14px; }
+    .muted-svg { fill: #64748b; font-size: 13px; }
+    .tools-panel { display:flex; gap:18px; align-items:flex-start; }
+    .tools-list { display:flex; flex-direction:column; gap:8px; }
+    .tool-chip { display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid var(--line); padding:8px 10px; border-radius:999px; font-size:13px; }
+    .tool-swatch { width:12px; height:12px; border-radius:3px; display:inline-block; }
+    .tool-cards { display:grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+    .tool-card { display:flex; align-items:center; gap:10px; background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px 16px; box-shadow: 0 4px 10px rgba(15,23,42,.04); }
+    .tool-card .tool-swatch { width:16px; height:16px; border-radius:5px; flex:0 0 16px; }
+    .tool-card .tool-name { font-size:14px; font-weight:650; color: var(--ink); line-height:1.3; }
+    .actionbar { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:18px; }
+    .actionbtn { display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:8px; font-size:14px; font-weight:700; text-decoration:none; border:1px solid transparent; transition: transform .05s ease; }
+    .actionbtn:active { transform: scale(.98); }
+    .actionbtn svg { width:16px; height:16px; flex:0 0 16px; }
+    .actionbtn.github { background:#0d1117; color:#fff; }
+    .actionbtn.drive { background:var(--blue); color:#fff; }
+    .actionbtn.linkedin { background:#0a66c2; color:#fff; }
+    .donut-row .chart-box { min-height: auto; }
+    .donut-card { display:flex; flex-direction:column; align-items:center; gap:6px; }
+    @media (max-width: 900px) {
+      .top, .grid2, .grid3, .step-grid { grid-template-columns: 1fr; }
+      .kpis { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="actionbar">
+      <a class="actionbtn github" href="https://github.com/kazuma761/composio_assignment" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub Repo
+      </a>
+      <a class="actionbtn drive" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1l3.5 6H4.5L8 1zm-4 7h8l-3.2 5.6a1 1 0 0 1-1.6 0L4 8zm9 0h2.5L12 15h-2l3-7z"/></svg>
+        Download Report (Drive)
+      </a>
+      <a class="actionbtn linkedin" href="https://www.linkedin.com/in/shriraj-pardeshi-45900041a/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M2.5 3.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM.5 6.5h4v9h-4v-9zM6.5 6.5h3.8v1.23h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V15.5h-4V9.85c0-1.35-.02-3.08-1.88-3.08-1.88 0-2.17 1.47-2.17 2.98v5.75h-4v-9z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+
+    <section class="top">
+      <div class="panel">
+        <h1>Composio Audit: 100-App Research, Pattern Analysis, and Verification</h1>
+        <p style="margin-top:10px">This report explains the assignment output in plain terms: what the agent researched, how claims moved through validation, which patterns emerged, and where human review is still required.</p>
+        <div class="flow" aria-label="pipeline flow">
+          <span class="node">100 Apps</span><span class="arrow">-></span>
+          <span class="node">Research Agent</span><span class="arrow">-></span>
+          <span class="node">Composio Toolkit Search</span><span class="arrow">-></span>
+          <span class="node">Official Documentation Search</span><span class="arrow">-></span>
+          <span class="node">Content Extraction</span><span class="arrow">-></span>
+          <span class="node">LLM Structuring</span><span class="arrow">-></span>
+          <span class="node">results.json</span><span class="arrow">-></span>
+          <span class="node">Pattern Analysis</span><span class="arrow">-></span>
+          <span class="node">Verification Pipeline</span><span class="arrow">-></span>
+          <span class="node">Pass 1</span><span class="arrow">-></span>
+          <span class="node">Human Review</span><span class="arrow">-></span>
+          <span class="node">Pass 2</span><span class="arrow">-></span>
+          <span class="node">Final Report</span>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Executive Summary</h2>
+        <p><b>100</b> apps are present in <code>results.json</code>. The assignment's first 90 apps are fully covered, with 10 additional AI/media apps included.</p>
+        <p><b>67</b> apps have all 7 required claim fields populated. The remaining rows need targeted cleanup before final submission.</p>
+        <p>Verification improved strict sampled accuracy from <b>59.5%</b> to <b>71.4%</b>, a <b>+11.9%</b> change.</p>
+        <p class="legend-note"><b>Pattern rows: 88 clean, 12 errored, 10 low confidence.</b> </p>
+      </div>
+    </section>
+
+    <section class="kpis">
+      <div class="kpi"><strong>100</strong><span>Total app rows analyzed</span></div>
+      <div class="kpi"><strong>90/90</strong><span>Assignment apps covered</span></div>
+      <div class="kpi"><strong>67.0%</strong><span>Rows with all 7 fields</span></div>
+      <div class="kpi"><strong>18</strong><span>Apps manually scored per pass</span></div>
+    </section>
+
+    <section class="band panel">
+      <h2>How the Agents Work</h2>
+      <div class="step-grid">
+        <div class="step"><b>1. Research agent</b><span><code>agent/research.py</code> starts from <code>data/apps.json</code> and fills missing fields into <code>output/results.json</code>.</span></div>
+        <div class="step"><b>2. Fast path</b><span>It checks Composio toolkit metadata first. When a toolkit exists, it records auth, tool count, MCP claim, buildability, and Composio evidence.</span></div>
+        <div class="step"><b>3. Web fallback</b><span>If no toolkit is found, it searches for API docs, extracts page text, and asks the LLM to structure the seven research fields.</span></div>
+        <div class="step"><b>4. Pattern analysis</b><span><code>agent/pattern.py</code> groups results by auth type, access model, blockers, easy wins, and low-confidence rows.</span></div>
+        <div class="step"><b>5. Verification</b><span><code>agent/verify.py</code> samples apps into templates, scores human verdicts, and compares pass 1 vs pass 2.</span></div>
+        <div class="step"><b>6. Report layer</b><span>This HTML summarizes the raw outputs and highlights what still requires official documentation checks.</span></div>
+      </div>
+    </section>
+
+    <section class="band grid2">
+      <div class="panel chart-box"><h2>Category vs Accessibility</h2><p>Grouped columns show whether app categories are mostly self-serve, gated, or still unknown.</p><div id="accessChart"></div></div>
+      <div class="panel chart-box"><h2>Research Effort Split</h2><p>Donut uses workflow touches: automated rows, web fallback rows, and human QC sample. Human QC overlaps with researched apps.</p><div id="effortDonut"></div></div>
+    </section>
+
+    <section class="band panel chart-box tall">
+      <h2>Authentication Protocols by Category</h2>
+      <p>Stacked horizontal bars make it clear where OAuth2 dominates and where API keys are common. Unknowns are immediate review targets.</p>
+      <div id="authStacked"></div>
+    </section>
+
+    <section class="band grid2">
+      <div class="panel chart-box tall"><h2>Source Breakdown by Category</h2><p>Counts per category by source: seed, composio, web.</p><div id="sourceByCategory"></div></div>
+      <div class="panel chart-box"><h2>Overall Source Mix & Lists</h2><p>Where each app row came from and detailed lists.</p><div id="viaDonut"></div>
+        <details><summary>Via Composio (47)</summary><div id="viaComposioList" class="table-wrap" style="padding:12px"></div></details>
+        <details><summary>Via web (41)</summary><div id="viaWebList" class="table-wrap" style="padding:12px"></div></details>
+        <details><summary>Research errors (12)</summary><div id="researchErrorsList" class="table-wrap" style="padding:12px"></div></details>
+        <details><summary>Low confidence (10)</summary><div id="lowConfidenceList" class="table-wrap" style="padding:12px"></div></details>
+      </div>
+    </section>
+
+    <section class="band grid2">
+      <div class="panel chart-box tall"><h2>Buildability Verdicts and Blockers</h2><p>Stacked columns show ready-to-build categories versus blockers such as sales gates, missing docs, research failures, or limited toolkits.</p><div id="readinessStacked"></div></div>
+      <div class="panel chart-box tall"><h2>API Surface Breadth vs MCP</h2><p>Treemap groups apps by inferred API breadth and colors each slice by whether MCP support is claimed in the current output. Treat this as a review queue, not proof of official MCP support.</p><div id="treemap"></div></div>
+    </section>
+
+    <section class="band grid2">
+      <div class="panel chart-box"><h2>Verification Loop Impact</h2><p>The two-point line shows the validation loop improved strict accuracy after browser validation and human feedback.</p><div id="accuracyLine"></div></div>
+      <div class="panel chart-box"><h2>Agent Confidence vs Actual Accuracy</h2><p>Each dot is one sampled app from pass 1. High-confidence dots with low accuracy are the likely hallucination or overclaim zone.</p><div id="scatter"></div></div>
+    </section>
+
+    <section class="band grid3 donut-row">
+      <div class="panel chart-box"><h2>Overall Auth Mix</h2><div id="authDonut"></div></div>
+      <div class="panel chart-box"><h2>Overall Access Mix</h2><div id="accessDonut"></div></div>
+      <div class="panel chart-box"><h2>Confidence Mix</h2><div id="confidenceDonut"></div></div>
+    </section>
+
+
+    <section class="band panel">
+      <h2>What the Output Folder Means</h2>
+      <p>The output folder has claim data, pattern summaries, manual review templates, scored verification passes, and this report. The most important distinction is that <code>results.json</code> contains claims while the <code>verification_*</code> files contain checks against official docs.</p>
+      <div class="table-wrap"><table><thead><tr><th>Output file</th><th>How to read it</th></tr></thead><tbody><tr><td>results_seed.json</td><td>Starting point with known or prefilled claims before the research run.</td></tr><tr><td>results.json</td><td>Main 100-app research output. This is claim data, not final verified truth.</td></tr><tr><td>patterns.json</td><td>Aggregated patterns: auth distribution, access gates, blockers, easy wins, and low-confidence rows.</td></tr><tr><td>agenda_alignment_report.json</td><td>Quality-control report comparing current output to the 90-app assignment agenda.</td></tr><tr><td>verification_pass1_template.json</td><td>Manual review template generated from a sampled set of apps.</td></tr><tr><td>verification_pass1_filled.json</td><td>Human-filled pass 1 verdicts.</td></tr><tr><td>verification_pass1_scored_REAL.json</td><td>Pass 1 scoring after human review. Strict accuracy: 59.5%</td></tr><tr><td>verification_pass2_template.json</td><td>Second-pass template using the same sampled app IDs for apples-to-apples scoring.</td></tr><tr><td>verification_pass2_filled.json</td><td>Human/browser-assisted pass 2 verdicts.</td></tr><tr><td>verification_pass2_scored.json</td><td>Pass 2 scoring after feedback loop. Strict accuracy: 71.4%</td></tr><tr><td>verification_delta.json</td><td>Accuracy delta between pass 1 and pass 2.</td></tr><tr><td>detailed_assignment_report.html</td><td>This executive report.</td></tr></tbody></table></div>
+    </section>
+
+    <section class="band panel">
+      <h2>Where Human Intervention Is Needed</h2>
+      <div class="callout"><strong>Key rule for final submission</strong><span>Official documentation must confirm each field. If official docs do not confirm a field, mark it unsure rather than inferring.</span></div>
+      <details open><summary>Rows missing required fields (33)</summary><div class="table-wrap"><table><thead><tr><th>ID</th><th>App</th><th>Category</th><th>Missing fields</th></tr></thead><tbody><tr><td>6</td><td>Podio</td><td>CRM</td><td>has_mcp, blocker</td></tr><tr><td>9</td><td>Copper</td><td>CRM</td><td>auth_method, self_serve_or_gated, api_surface, has_mcp</td></tr><tr><td>22</td><td>Twilio</td><td>Messaging</td><td>blocker</td></tr><tr><td>24</td><td>Lark (Larksuite)</td><td>Messaging</td><td>auth_method, self_serve_or_gated, api_surface, has_mcp</td></tr><tr><td>30</td><td>Vonage</td><td>Messaging</td><td>has_mcp, blocker</td></tr><tr><td>37</td><td>systeme.io</td><td>Marketing</td><td>has_mcp, blocker</td></tr><tr><td>38</td><td>Pinterest</td><td>Marketing</td><td>auth_method, self_serve_or_gated, api_surface, has_mcp</td></tr><tr><td>42</td><td>WooCommerce</td><td>Ecommerce</td><td>blocker</td></tr><tr><td>43</td><td>BigCommerce</td><td>Ecommerce</td><td>blocker</td></tr><tr><td>45</td><td>Magento (Adobe Commerce)</td><td>Ecommerce</td><td>has_mcp, blocker</td></tr><tr><td>46</td><td>Squarespace</td><td>Ecommerce</td><td>has_mcp, blocker</td></tr><tr><td>47</td><td>Ecwid</td><td>Ecommerce</td><td>blocker</td></tr><tr><td>50</td><td>fanbasis</td><td>Ecommerce</td><td>blocker</td></tr><tr><td>52</td><td>SE Ranking</td><td>Data / SEO</td><td>blocker</td></tr><tr><td>54</td><td>MrScraper</td><td>Data / SEO</td><td>blocker</td></tr><tr><td>58</td><td>Sherlock</td><td>Data / SEO</td><td>auth_method, self_serve_or_gated, api_surface, has_mcp</td></tr><tr><td>59</td><td>Waterfall.io</td><td>Data / SEO</td><td>blocker</td></tr><tr><td>60</td><td>Clay</td><td>Data / SEO</td><td>blocker</td></tr><tr><td>63</td><td>Netlify</td><td>Dev / Infra</td><td>blocker</td></tr><tr><td>68</td><td>MongoDB Atlas</td><td>Dev / Infra</td><td>has_mcp, blocker</td></tr><tr><td>79</td><td>Smartsheet</td><td>Productivity</td><td>blocker</td></tr><tr><td>82</td><td>Plaid</td><td>Finance</td><td>blocker</td></tr><tr><td>83</td><td>Binance</td><td>Finance</td><td>auth_method, self_serve_or_gated, api_surface, has_mcp</td></tr><tr><td>84</td><td>Paygent Connect</td><td>Finance</td><td>blocker</td></tr><tr><td>85</td><td>iPayX</td><td>Finance</td><td>auth_method, self_serve_or_gated, api_surface, has_mcp</td></tr><tr><td>90</td><td>PitchBook</td><td>Finance</td><td>auth_method, self_serve_or_gated, api_surface, has_mcp, buildability_verdict, blocker</td></tr><tr><td>91</td><td>NotebookLM</td><td>AI / Media</td><td>blocker</td></tr><tr><td>92</td><td>Otter AI</td><td>AI / Media</td><td>auth_method, has_mcp</td></tr><tr><td>94</td><td>Consensus</td><td>AI / Media</td><td>blocker</td></tr><tr><td>95</td><td>Reducto</td><td>AI / Media</td><td>blocker</td></tr><tr><td>97</td><td>higgsfield</td><td>AI / Media</td><td>auth_method, self_serve_or_gated, has_mcp, blocker</td></tr><tr><td>98</td><td>Mermaid CLI</td><td>AI / Media</td><td>auth_method, blocker</td></tr><tr><td>100</td><td>Grain</td><td>AI / Media</td><td>auth_method, self_serve_or_gated, api_surface, has_mcp</td></tr></tbody></table></div></details>
+      <details><summary>Tracker or ad redirect evidence URLs (1)</summary><div class="table-wrap"><table><thead><tr><th>ID</th><th>App</th><th>Host</th><th>Evidence URL</th></tr></thead><tbody><tr><td>5</td><td>Twenty</td><td>www.bing.com</td><td>https://www.bing.com/aclick?ld=e8S-dr_rik1F4AGa6lw8de7TVUCUwfa6BMs5ho0T4tpM4V7xptlTmrvkllsqX5mZDGaxz4QJK5hKgCf7mAfKJcUr2gOPnZPeeBGp1YTN4IKImY6e_r_JmlftpGdLEJD393mYICxqVTlVc_7Ysm-a2kj7hTmr9syYUpeM30MjeWVSbUvBeH-HC4cCABvn11iVNnn_PL4w&amp;u=aHR0cHMlM2ElMmYlMmZhZC5kb3VibGVjbGljay5uZXQlMmZzZWFyY2hhZHMlMmZsaW5rJTJmY2xpY2slM2ZsaWQlM2Q0MzcwMDA4MzIyMjU3OTU1OSUyNmRzX3Nfa3dnaWQlM2Q1ODcwMDAwOTAwNjM4Njg5MiUyNmRzX2FfY2lkJTNkNDAwNDkwMzk2JTI2ZHNfYV9jYWlkJTNkMjM1MzM2NDU1NjclMjZkc19hX2FnaWQlM2QxODc5Mjk2NzUyOTAlMjZkc19hX2xpZCUzZGt3ZC0xMzg2OTY1OTUxNTE0JTI2JTI2ZHNfZV9hZGlkJTNkNzc1ODQ1MTYzOTA2NTQlMjZkc19lX3RhcmdldF9pZCUzZGt3ZC03NzU4NDgzMjA1MTY1MyUzYWxvYy0xMTYwNzIlMjYlMjZkc19lX25ldHdvcmslM2RvJTI2ZHNfdXJsX3YlM2QyJTI2ZHNfZGVzdF91cmwlM2RodHRwcyUzYSUyZiUyZnd3dy5oZXJlLmNvbSUyZnBsYXRmb3JtJTNmY2lkJTNkRGV2ZWxvcGVyX0phdmFzY3JpcHQtQXBpLUJpbmctWVQtMC1EZXYtQVBBQy1JTi1tYXRjaHR5cGUlM2RwJTI2dXRtX3NvdXJjZSUzZEJpbmclMjZ1dG1fbWVkaXVtJTNkcHBjJTI2dXRtX2NhbXBhaWduJTNkUHJvZHVjdHNfQWx3YXlzT24lMjZ1dG1fdGVybSUzZGphdmFzY3JpcHQlMjUyMGFwaXMlMjZnY2xpZCUzZGE4OGU2YTZlNDFmYjE5ZTAyZThiMDAzYWVjYjdhNWExJTI2Z2Nsc3JjJTNkM3AuZHMlMjYlMjZtc2Nsa2lkJTNkYTg4ZTZhNmU0MWZiMTllMDJlOGIwMDNhZWNiN2E1YTE&amp;rlid=a88e6a6e41fb19e02e8b003aecb7a5a1</td></tr></tbody></table></div></details>
+      <details><summary>Evidence URLs that do not look like developer/API docs (11)</summary><div class="table-wrap"><table><thead><tr><th>ID</th><th>App</th><th>Host</th><th>Evidence URL</th></tr></thead><tbody><tr><td>5</td><td>Twenty</td><td>www.bing.com</td><td>https://www.bing.com/aclick?ld=e8S-dr_rik1F4AGa6lw8de7TVUCUwfa6BMs5ho0T4tpM4V7xptlTmrvkllsqX5mZDGaxz4QJK5hKgCf7mAfKJcUr2gOPnZPeeBGp1YTN4IKImY6e_r_JmlftpGdLEJD393mYICxqVTlVc_7Ysm-a2kj7hTmr9syYUpeM30MjeWVSbUvBeH-HC4cCABvn11iVNnn_PL4w&amp;u=aHR0cHMlM2ElMmYlMmZhZC5kb3VibGVjbGljay5uZXQlMmZzZWFyY2hhZHMlMmZsaW5rJTJmY2xpY2slM2ZsaWQlM2Q0MzcwMDA4MzIyMjU3OTU1OSUyNmRzX3Nfa3dnaWQlM2Q1ODcwMDAwOTAwNjM4Njg5MiUyNmRzX2FfY2lkJTNkNDAwNDkwMzk2JTI2ZHNfYV9jYWlkJTNkMjM1MzM2NDU1NjclMjZkc19hX2FnaWQlM2QxODc5Mjk2NzUyOTAlMjZkc19hX2xpZCUzZGt3ZC0xMzg2OTY1OTUxNTE0JTI2JTI2ZHNfZV9hZGlkJTNkNzc1ODQ1MTYzOTA2NTQlMjZkc19lX3RhcmdldF9pZCUzZGt3ZC03NzU4NDgzMjA1MTY1MyUzYWxvYy0xMTYwNzIlMjYlMjZkc19lX25ldHdvcmslM2RvJTI2ZHNfdXJsX3YlM2QyJTI2ZHNfZGVzdF91cmwlM2RodHRwcyUzYSUyZiUyZnd3dy5oZXJlLmNvbSUyZnBsYXRmb3JtJTNmY2lkJTNkRGV2ZWxvcGVyX0phdmFzY3JpcHQtQXBpLUJpbmctWVQtMC1EZXYtQVBBQy1JTi1tYXRjaHR5cGUlM2RwJTI2dXRtX3NvdXJjZSUzZEJpbmclMjZ1dG1fbWVkaXVtJTNkcHBjJTI2dXRtX2NhbXBhaWduJTNkUHJvZHVjdHNfQWx3YXlzT24lMjZ1dG1fdGVybSUzZGphdmFzY3JpcHQlMjUyMGFwaXMlMjZnY2xpZCUzZGE4OGU2YTZlNDFmYjE5ZTAyZThiMDAzYWVjYjdhNWExJTI2Z2Nsc3JjJTNkM3AuZHMlMjYlMjZtc2Nsa2lkJTNkYTg4ZTZhNmU0MWZiMTllMDJlOGIwMDNhZWNiN2E1YTE&amp;rlid=a88e6a6e41fb19e02e8b003aecb7a5a1</td></tr><tr><td>9</td><td>Copper</td><td>apidocs.copper.org</td><td>https://apidocs.copper.org/</td></tr><tr><td>21</td><td>Slack</td><td>api.slack.com</td><td>https://api.slack.com/</td></tr><tr><td>24</td><td>Lark (Larksuite)</td><td>open.larksuite.com</td><td>https://open.larksuite.com/document/ukTMukTMukTM/uITNz4iM1MjLyUzM</td></tr><tr><td>34</td><td>GoHighLevel</td><td>github.com</td><td>https://github.com/keith-wohnv/GHL-API-Docs</td></tr><tr><td>37</td><td>systeme.io</td><td>rollout.com</td><td>https://rollout.com/integration-guides/systeme.io/quick-guide-to-implementing-webhooks-in-systemeio</td></tr><tr><td>42</td><td>WooCommerce</td><td>woocommerce.com</td><td>https://woocommerce.com/document/woocommerce-rest-api/</td></tr><tr><td>47</td><td>Ecwid</td><td>github.com</td><td>https://github.com/Ecwid/ecwid-api-docs</td></tr><tr><td>50</td><td>fanbasis</td><td>apidocs.fan</td><td>https://apidocs.fan/</td></tr><tr><td>83</td><td>Binance</td><td>www.binance.com</td><td>https://www.binance.com/en/binance-api</td></tr><tr><td>90</td><td>PitchBook</td><td>apitracker.io</td><td>https://apitracker.io/a/pitchbook</td></tr></tbody></table></div></details>
+      <details><summary>Rows using Composio docs as evidence (44)</summary><p>These are useful for Composio integration context, but the assignment asks for official vendor documentation when verifying vendor facts such as auth method, gating, API surface, and MCP support.</p><div class="table-wrap"><table><thead><tr><th>ID</th><th>App</th><th>Category</th><th>Evidence URL</th></tr></thead><tbody><tr><td>3</td><td>Pipedrive</td><td>CRM</td><td>https://docs.composio.dev/toolkits/pipedrive</td></tr><tr><td>4</td><td>Attio</td><td>CRM</td><td>https://docs.composio.dev/toolkits/attio</td></tr><tr><td>7</td><td>Zoho CRM</td><td>CRM</td><td>https://docs.composio.dev/toolkits/zoho</td></tr><tr><td>8</td><td>Close</td><td>CRM</td><td>https://docs.composio.dev/toolkits/close</td></tr><tr><td>13</td><td>Freshdesk</td><td>Support</td><td>https://docs.composio.dev/toolkits/freshdesk</td></tr><tr><td>14</td><td>Front</td><td>Support</td><td>https://docs.composio.dev/toolkits/front</td></tr><tr><td>15</td><td>Pylon</td><td>Support</td><td>https://docs.composio.dev/toolkits/pylon_mcp</td></tr><tr><td>17</td><td>Plain</td><td>Support</td><td>https://docs.composio.dev/toolkits/plain</td></tr><tr><td>18</td><td>Help Scout</td><td>Support</td><td>https://docs.composio.dev/toolkits/help_scout</td></tr><tr><td>19</td><td>Gorgias</td><td>Support</td><td>https://docs.composio.dev/toolkits/gorgias</td></tr><tr><td>23</td><td>Zoho Cliq</td><td>Messaging</td><td>https://docs.composio.dev/toolkits/zoho</td></tr><tr><td>26</td><td>Discord</td><td>Messaging</td><td>https://docs.composio.dev/toolkits/discord</td></tr><tr><td>27</td><td>Telegram</td><td>Messaging</td><td>https://docs.composio.dev/toolkits/telegram</td></tr><tr><td>28</td><td>WhatsApp Business</td><td>Messaging</td><td>https://docs.composio.dev/toolkits/whatsapp</td></tr><tr><td>31</td><td>Google Ads</td><td>Marketing</td><td>https://docs.composio.dev/toolkits/googleads</td></tr><tr><td>32</td><td>Meta Ads</td><td>Marketing</td><td>https://docs.composio.dev/toolkits/metaads</td></tr><tr><td>33</td><td>LinkedIn Ads</td><td>Marketing</td><td>https://docs.composio.dev/toolkits/linkedin_ads</td></tr><tr><td>35</td><td>Mailchimp</td><td>Marketing</td><td>https://docs.composio.dev/toolkits/mailchimp</td></tr><tr><td>36</td><td>Klaviyo</td><td>Marketing</td><td>https://docs.composio.dev/toolkits/klaviyo</td></tr><tr><td>40</td><td>SendGrid</td><td>Marketing</td><td>https://docs.composio.dev/toolkits/sendgrid</td></tr><tr><td>44</td><td>Salesforce Commerce Cloud</td><td>Ecommerce</td><td>https://docs.composio.dev/toolkits/salesforce</td></tr><tr><td>48</td><td>Gumroad</td><td>Ecommerce</td><td>https://docs.composio.dev/toolkits/gumroad</td></tr><tr><td>49</td><td>Amazon Selling Partner</td><td>Ecommerce</td><td>https://docs.composio.dev/toolkits/amazon</td></tr><tr><td>51</td><td>DataForSEO</td><td>Data / SEO</td><td>https://docs.composio.dev/toolkits/dataforseo</td></tr><tr><td>53</td><td>Ahrefs</td><td>Data / SEO</td><td>https://docs.composio.dev/toolkits/ahrefs</td></tr><tr><td>55</td><td>Apify</td><td>Data / SEO</td><td>https://docs.composio.dev/toolkits/apify</td></tr><tr><td>56</td><td>Firecrawl</td><td>Data / SEO</td><td>https://docs.composio.dev/toolkits/firecrawl</td></tr><tr><td>57</td><td>Bright Data</td><td>Data / SEO</td><td>https://docs.composio.dev/toolkits/brightdata</td></tr><tr><td>62</td><td>Vercel</td><td>Dev / Infra</td><td>https://docs.composio.dev/toolkits/vercel</td></tr><tr><td>64</td><td>Cloudflare</td><td>Dev / Infra</td><td>https://docs.composio.dev/toolkits/cloudflare</td></tr><tr><td>65</td><td>Supabase</td><td>Dev / Infra</td><td>https://docs.composio.dev/toolkits/supabase</td></tr><tr><td>66</td><td>Neo4j</td><td>Dev / Infra</td><td>https://docs.composio.dev/toolkits/neo4j</td></tr><tr><td>67</td><td>Snowflake</td><td>Dev / Infra</td><td>https://docs.composio.dev/toolkits/snowflake</td></tr><tr><td>69</td><td>Datadog</td><td>Dev / Infra</td><td>https://docs.composio.dev/toolkits/datadog</td></tr><tr><td>70</td><td>Sentry</td><td>Dev / Infra</td><td>https://docs.composio.dev/toolkits/sentry</td></tr><tr><td>73</td><td>Linear</td><td>Productivity</td><td>https://docs.composio.dev/toolkits/linear</td></tr><tr><td>77</td><td>ClickUp</td><td>Productivity</td><td>https://docs.composio.dev/toolkits/clickup</td></tr><tr><td>78</td><td>Coda</td><td>Productivity</td><td>https://docs.composio.dev/toolkits/coda</td></tr><tr><td>80</td><td>Harvest</td><td>Productivity</td><td>https://docs.composio.dev/toolkits/harvest</td></tr><tr><td>81</td><td>Stripe</td><td>Finance</td><td>https://docs.composio.dev/toolkits/stripe</td></tr><tr><td>86</td><td>QuickBooks</td><td>Finance</td><td>https://docs.composio.dev/toolkits/quickbooks</td></tr><tr><td>87</td><td>Xero</td><td>Finance</td><td>https://docs.composio.dev/toolkits/xero</td></tr><tr><td>88</td><td>Brex</td><td>Finance</td><td>https://docs.composio.dev/toolkits/brex</td></tr><tr><td>89</td><td>Ramp</td><td>Finance</td><td>https://docs.composio.dev/toolkits/ramp</td></tr></tbody></table></div></details>
+    </section>
+
+    <section class="band panel">
+      <h2>100-App Operational View</h2>
+      <p>This table gives a compact, reviewer-friendly view of every app row and the derived pattern buckets used in the charts.</p>
+      <div class="table-wrap"><table><thead><tr><th>ID</th><th>App</th><th>Category</th><th>Access</th><th>Auth</th><th>Readiness</th><th>API</th><th>MCP</th><th>Confidence</th></tr></thead><tbody><tr><td>1</td><td>Salesforce</td><td>CRM</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>2</td><td>HubSpot</td><td>CRM</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>3</td><td>Pipedrive</td><td>CRM</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>4</td><td>Attio</td><td>CRM</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>5</td><td>Twenty</td><td>CRM</td><td>unknown</td><td>OAuth2</td><td>Missing docs</td><td>Large</td><td>yes</td><td>low</td></tr><tr><td>6</td><td>Podio</td><td>CRM</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Large</td><td>unknown</td><td>high</td></tr><tr><td>7</td><td>Zoho CRM</td><td>CRM</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>8</td><td>Close</td><td>CRM</td><td>self-serve</td><td>API key / token</td><td>Ready</td><td>Small</td><td>yes</td><td>high</td></tr><tr><td>9</td><td>Copper</td><td>CRM</td><td>unknown</td><td>unknown</td><td>Missing docs</td><td>Unknown</td><td>unknown</td><td>low</td></tr><tr><td>10</td><td>DealCloud</td><td>CRM</td><td>gated</td><td>API key / token</td><td>Missing docs</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>11</td><td>Zendesk</td><td>Support</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>12</td><td>Intercom</td><td>Support</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Medium</td><td>yes</td><td>medium</td></tr><tr><td>13</td><td>Freshdesk</td><td>Support</td><td>self-serve</td><td>API key / token</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>14</td><td>Front</td><td>Support</td><td>self-serve</td><td>API key / token</td><td>No/limited toolkit</td><td>Small</td><td>yes</td><td>high</td></tr><tr><td>15</td><td>Pylon</td><td>Support</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Small</td><td>yes</td><td>high</td></tr><tr><td>16</td><td>LiveAgent</td><td>Support</td><td>gated</td><td>other</td><td>Missing docs</td><td>Large</td><td>yes</td><td>low</td></tr><tr><td>17</td><td>Plain</td><td>Support</td><td>self-serve</td><td>API key / token</td><td>Ready</td><td>Small</td><td>yes</td><td>high</td></tr><tr><td>18</td><td>Help Scout</td><td>Support</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>19</td><td>Gorgias</td><td>Support</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>20</td><td>Gladly</td><td>Support</td><td>gated</td><td>API key / token</td><td>Missing docs</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>21</td><td>Slack</td><td>Messaging</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>22</td><td>Twilio</td><td>Messaging</td><td>self-serve</td><td>API key / token</td><td>Other blocker</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>23</td><td>Zoho Cliq</td><td>Messaging</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>24</td><td>Lark (Larksuite)</td><td>Messaging</td><td>unknown</td><td>unknown</td><td>Missing docs</td><td>Unknown</td><td>unknown</td><td>low</td></tr><tr><td>25</td><td>Pumble</td><td>Messaging</td><td>self-serve</td><td>API key / token</td><td>Missing docs</td><td>Medium</td><td>no</td><td>high</td></tr><tr><td>26</td><td>Discord</td><td>Messaging</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>27</td><td>Telegram</td><td>Messaging</td><td>self-serve</td><td>API key / token</td><td>Ready</td><td>Small</td><td>yes</td><td>high</td></tr><tr><td>28</td><td>WhatsApp Business</td><td>Messaging</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>29</td><td>Aircall</td><td>Messaging</td><td>gated</td><td>OAuth2</td><td>Missing docs</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>30</td><td>Vonage</td><td>Messaging</td><td>self-serve</td><td>API key / token</td><td>Other blocker</td><td>Large</td><td>unknown</td><td>high</td></tr><tr><td>31</td><td>Google Ads</td><td>Marketing</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Small</td><td>yes</td><td>high</td></tr><tr><td>32</td><td>Meta Ads</td><td>Marketing</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>33</td><td>LinkedIn Ads</td><td>Marketing</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>34</td><td>GoHighLevel</td><td>Marketing</td><td>gated</td><td>OAuth2</td><td>Missing docs</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>35</td><td>Mailchimp</td><td>Marketing</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>36</td><td>Klaviyo</td><td>Marketing</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>37</td><td>systeme.io</td><td>Marketing</td><td>self-serve</td><td>API key / token</td><td>Ready</td><td>Medium</td><td>unknown</td><td>high</td></tr><tr><td>38</td><td>Pinterest</td><td>Marketing</td><td>unknown</td><td>unknown</td><td>Missing docs</td><td>Unknown</td><td>unknown</td><td>low</td></tr><tr><td>39</td><td>Threads (Meta)</td><td>Marketing</td><td>gated</td><td>OAuth2</td><td>Other blocker</td><td>Small</td><td>yes</td><td>medium</td></tr><tr><td>40</td><td>SendGrid</td><td>Marketing</td><td>self-serve</td><td>other</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>41</td><td>Shopify</td><td>Ecommerce</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>42</td><td>WooCommerce</td><td>Ecommerce</td><td>self-serve</td><td>API key / token</td><td>Other blocker</td><td>Large</td><td>no</td><td>high</td></tr><tr><td>43</td><td>BigCommerce</td><td>Ecommerce</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>44</td><td>Salesforce Commerce Cloud</td><td>Ecommerce</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>45</td><td>Magento (Adobe Commerce)</td><td>Ecommerce</td><td>gated</td><td>OAuth2</td><td>Ready</td><td>Large</td><td>unknown</td><td>high</td></tr><tr><td>46</td><td>Squarespace</td><td>Ecommerce</td><td>unknown</td><td>other</td><td>Ready</td><td>Large</td><td>unknown</td><td>high</td></tr><tr><td>47</td><td>Ecwid</td><td>Ecommerce</td><td>self-serve</td><td>OAuth2</td><td>Other blocker</td><td>Large</td><td>no</td><td>high</td></tr><tr><td>48</td><td>Gumroad</td><td>Ecommerce</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Small</td><td>yes</td><td>high</td></tr><tr><td>49</td><td>Amazon Selling Partner</td><td>Ecommerce</td><td>self-serve</td><td>OAuth2</td><td>No/limited toolkit</td><td>Small</td><td>yes</td><td>high</td></tr><tr><td>50</td><td>fanbasis</td><td>Ecommerce</td><td>self-serve</td><td>API key / token</td><td>Other blocker</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>51</td><td>DataForSEO</td><td>Data / SEO</td><td>self-serve</td><td>Basic auth</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>52</td><td>SE Ranking</td><td>Data / SEO</td><td>gated</td><td>API key / token</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>53</td><td>Ahrefs</td><td>Data / SEO</td><td>self-serve</td><td>other</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>54</td><td>MrScraper</td><td>Data / SEO</td><td>self-serve</td><td>API key / token</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>55</td><td>Apify</td><td>Data / SEO</td><td>self-serve</td><td>API key / token</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>56</td><td>Firecrawl</td><td>Data / SEO</td><td>self-serve</td><td>API key / token</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>57</td><td>Bright Data</td><td>Data / SEO</td><td>self-serve</td><td>API key / token</td><td>Ready</td><td>Small</td><td>yes</td><td>high</td></tr><tr><td>58</td><td>Sherlock</td><td>Data / SEO</td><td>unknown</td><td>unknown</td><td>Research failure</td><td>Unknown</td><td>unknown</td><td>low</td></tr><tr><td>59</td><td>Waterfall.io</td><td>Data / SEO</td><td>gated</td><td>API key / token</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>60</td><td>Clay</td><td>Data / SEO</td><td>gated</td><td>API key / token</td><td>Other blocker</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>61</td><td>GitHub</td><td>Dev / Infra</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>62</td><td>Vercel</td><td>Dev / Infra</td><td>self-serve</td><td>API key / token</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>63</td><td>Netlify</td><td>Dev / Infra</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>64</td><td>Cloudflare</td><td>Dev / Infra</td><td>self-serve</td><td>API key / token</td><td>Ready</td><td>Small</td><td>yes</td><td>high</td></tr><tr><td>65</td><td>Supabase</td><td>Dev / Infra</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>66</td><td>Neo4j</td><td>Dev / Infra</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Small</td><td>yes</td><td>high</td></tr><tr><td>67</td><td>Snowflake</td><td>Dev / Infra</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Small</td><td>yes</td><td>high</td></tr><tr><td>68</td><td>MongoDB Atlas</td><td>Dev / Infra</td><td>gated</td><td>OAuth2 + API key</td><td>Ready</td><td>Large</td><td>unknown</td><td>high</td></tr><tr><td>69</td><td>Datadog</td><td>Dev / Infra</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>70</td><td>Sentry</td><td>Dev / Infra</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>71</td><td>Notion</td><td>Productivity</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>72</td><td>Airtable</td><td>Productivity</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>73</td><td>Linear</td><td>Productivity</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>74</td><td>Jira</td><td>Productivity</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>75</td><td>Asana</td><td>Productivity</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>76</td><td>Monday.com</td><td>Productivity</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>77</td><td>ClickUp</td><td>Productivity</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>78</td><td>Coda</td><td>Productivity</td><td>self-serve</td><td>API key / token</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>79</td><td>Smartsheet</td><td>Productivity</td><td>self-serve</td><td>other</td><td>Other blocker</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>80</td><td>Harvest</td><td>Productivity</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>81</td><td>Stripe</td><td>Finance</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>82</td><td>Plaid</td><td>Finance</td><td>gated</td><td>other</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>83</td><td>Binance</td><td>Finance</td><td>unknown</td><td>unknown</td><td>Missing docs</td><td>Unknown</td><td>unknown</td><td>low</td></tr><tr><td>84</td><td>Paygent Connect</td><td>Finance</td><td>self-serve</td><td>API key / token</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>85</td><td>iPayX</td><td>Finance</td><td>unknown</td><td>unknown</td><td>Missing docs</td><td>Unknown</td><td>unknown</td><td>low</td></tr><tr><td>86</td><td>QuickBooks</td><td>Finance</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>87</td><td>Xero</td><td>Finance</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>88</td><td>Brex</td><td>Finance</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>89</td><td>Ramp</td><td>Finance</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>90</td><td>PitchBook</td><td>Finance</td><td>unknown</td><td>unknown</td><td>Other blocker</td><td>Unknown</td><td>unknown</td><td>low</td></tr><tr><td>91</td><td>NotebookLM</td><td>AI / Media</td><td>gated</td><td>OAuth2</td><td>Sales/API gate</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>92</td><td>Otter AI</td><td>AI / Media</td><td>gated</td><td>unknown</td><td>Sales/API gate</td><td>Small</td><td>unknown</td><td>high</td></tr><tr><td>93</td><td>Fathom</td><td>AI / Media</td><td>self-serve</td><td>OAuth2 + API key</td><td>Ready</td><td>Small</td><td>yes</td><td>high</td></tr><tr><td>94</td><td>Consensus</td><td>AI / Media</td><td>gated</td><td>OAuth2 + API key</td><td>Sales/API gate</td><td>Medium</td><td>no</td><td>high</td></tr><tr><td>95</td><td>Reducto</td><td>AI / Media</td><td>self-serve</td><td>API key / token</td><td>Ready</td><td>Large</td><td>yes</td><td>high</td></tr><tr><td>96</td><td>Devin</td><td>AI / Media</td><td>self-serve</td><td>API key / token</td><td>Ready</td><td>Small</td><td>yes</td><td>high</td></tr><tr><td>97</td><td>higgsfield</td><td>AI / Media</td><td>unknown</td><td>unknown</td><td>Ready</td><td>Large</td><td>unknown</td><td>medium</td></tr><tr><td>98</td><td>Mermaid CLI</td><td>AI / Media</td><td>self-serve</td><td>unknown</td><td>Sales/API gate</td><td>Small</td><td>no</td><td>high</td></tr><tr><td>99</td><td>YouTube Transcript</td><td>AI / Media</td><td>self-serve</td><td>OAuth2</td><td>Ready</td><td>Medium</td><td>yes</td><td>high</td></tr><tr><td>100</td><td>Grain</td><td>AI / Media</td><td>unknown</td><td>unknown</td><td>Research failure</td><td>Unknown</td><td>unknown</td><td>low</td></tr></tbody></table></div>
+    </section>
+
+  
+  </div>
+
+  <script>
+    const DATA = {"totalApps": 100, "coreApps": 90, "extraApps": 10, "completeCount": 67, "lowConfidenceCount": 10, "accessCounts": {"self_serve": 74, "unknown": 11, "gated": 15}, "authCounts": {"OAuth2": 30, "OAuth2 + API key": 26, "API key / token": 26, "unknown": 11, "other": 6, "Basic auth": 1}, "blockerCounts": {"Ready": 71, "Missing docs": 12, "No/limited toolkit": 2, "Other blocker": 9, "Research failure": 2, "Sales/API gate": 4}, "confidenceCounts": {"high": 87, "low": 10, "medium": 3}, "viaCounts": {"seed": 12, "composio": 47, "web": 41}, "accessByCategory": [{"category": "AI / Media", "self_serve": 5, "gated": 3, "unknown": 2}, {"category": "CRM", "self_serve": 7, "gated": 1, "unknown": 2}, {"category": "Data / SEO", "self_serve": 6, "gated": 3, "unknown": 1}, {"category": "Dev / Infra", "self_serve": 9, "gated": 1, "unknown": 0}, {"category": "Ecommerce", "self_serve": 8, "gated": 1, "unknown": 1}, {"category": "Finance", "self_serve": 6, "gated": 1, "unknown": 3}, {"category": "Marketing", "self_serve": 7, "gated": 2, "unknown": 1}, {"category": "Messaging", "self_serve": 8, "gated": 1, "unknown": 1}, {"category": "Productivity", "self_serve": 10, "gated": 0, "unknown": 0}, {"category": "Support", "self_serve": 8, "gated": 2, "unknown": 0}], "authByCategory": [{"category": "AI / Media", "OAuth2": 2, "OAuth2 + API key": 2, "API key / token": 2, "Basic auth": 0, "other": 0, "unknown": 4}, {"category": "CRM", "OAuth2": 6, "OAuth2 + API key": 1, "API key / token": 2, "Basic auth": 0, "other": 0, "unknown": 1}, {"category": "Data / SEO", "OAuth2": 0, "OAuth2 + API key": 0, "API key / token": 7, "Basic auth": 1, "other": 1, "unknown": 1}, {"category": "Dev / Infra", "OAuth2": 3, "OAuth2 + API key": 5, "API key / token": 2, "Basic auth": 0, "other": 0, "unknown": 0}, {"category": "Ecommerce", "OAuth2": 4, "OAuth2 + API key": 3, "API key / token": 2, "Basic auth": 0, "other": 1, "unknown": 0}, {"category": "Finance", "OAuth2": 3, "OAuth2 + API key": 2, "API key / token": 1, "Basic auth": 0, "other": 1, "unknown": 3}, {"category": "Marketing", "OAuth2": 5, "OAuth2 + API key": 2, "API key / token": 1, "Basic auth": 0, "other": 1, "unknown": 1}, {"category": "Messaging", "OAuth2": 4, "OAuth2 + API key": 1, "API key / token": 4, "Basic auth": 0, "other": 0, "unknown": 1}, {"category": "Productivity", "OAuth2": 1, "OAuth2 + API key": 7, "API key / token": 1, "Basic auth": 0, "other": 1, "unknown": 0}, {"category": "Support", "OAuth2": 2, "OAuth2 + API key": 3, "API key / token": 4, "Basic auth": 0, "other": 1, "unknown": 0}], "readinessByCategory": [{"category": "AI / Media", "Ready": 5, "Sales/API gate": 4, "Anti-bot/Captcha": 0, "Missing docs": 0, "No/limited toolkit": 0, "Research failure": 1, "Other blocker": 0}, {"category": "CRM", "Ready": 7, "Sales/API gate": 0, "Anti-bot/Captcha": 0, "Missing docs": 3, "No/limited toolkit": 0, "Research failure": 0, "Other blocker": 0}, {"category": "Data / SEO", "Ready": 8, "Sales/API gate": 0, "Anti-bot/Captcha": 0, "Missing docs": 0, "No/limited toolkit": 0, "Research failure": 1, "Other blocker": 1}, {"category": "Dev / Infra", "Ready": 10, "Sales/API gate": 0, "Anti-bot/Captcha": 0, "Missing docs": 0, "No/limited toolkit": 0, "Research failure": 0, "Other blocker": 0}, {"category": "Ecommerce", "Ready": 6, "Sales/API gate": 0, "Anti-bot/Captcha": 0, "Missing docs": 0, "No/limited toolkit": 1, "Research failure": 0, "Other blocker": 3}, {"category": "Finance", "Ready": 7, "Sales/API gate": 0, "Anti-bot/Captcha": 0, "Missing docs": 2, "No/limited toolkit": 0, "Research failure": 0, "Other blocker": 1}, {"category": "Marketing", "Ready": 7, "Sales/API gate": 0, "Anti-bot/Captcha": 0, "Missing docs": 2, "No/limited toolkit": 0, "Research failure": 0, "Other blocker": 1}, {"category": "Messaging", "Ready": 5, "Sales/API gate": 0, "Anti-bot/Captcha": 0, "Missing docs": 3, "No/limited toolkit": 0, "Research failure": 0, "Other blocker": 2}, {"category": "Productivity", "Ready": 9, "Sales/API gate": 0, "Anti-bot/Captcha": 0, "Missing docs": 0, "No/limited toolkit": 0, "Research failure": 0, "Other blocker": 1}, {"category": "Support", "Ready": 7, "Sales/API gate": 0, "Anti-bot/Captcha": 0, "Missing docs": 2, "No/limited toolkit": 1, "Research failure": 0, "Other blocker": 0}], "breadthByMcp": {"Large": {"mcp_true": 40, "mcp_false": 2, "mcp_unknown": 6}, "Medium": {"mcp_true": 24, "mcp_false": 2, "mcp_unknown": 1}, "Small": {"mcp_true": 15, "mcp_false": 1, "mcp_unknown": 1}, "Unknown": {"mcp_true": 0, "mcp_false": 0, "mcp_unknown": 8}}, "verification": {"pass1": 0.5952, "pass2": 0.7143, "pass1Lenient": 0.7732, "pass2Lenient": 0.9, "delta": 0.1191000000000001, "improved": 11, "regressed": 0, "unchanged": 7, "sampleApps": 18}, "scatterPoints": [{"id": 4, "name": "Attio", "confidence": "high", "x": 0.85, "accuracy": 0.571, "researched_via": "composio"}, {"id": 5, "name": "Twenty", "confidence": "low", "x": 0.25, "accuracy": 0.286, "researched_via": "web"}, {"id": 12, "name": "Intercom", "confidence": "medium", "x": 0.55, "accuracy": 1.0, "researched_via": "seed"}, {"id": 14, "name": "Front", "confidence": "high", "x": 0.85, "accuracy": 0.286, "researched_via": "composio"}, {"id": 15, "name": "Pylon", "confidence": "high", "x": 0.85, "accuracy": 0.857, "researched_via": "composio"}, {"id": 18, "name": "Help Scout", "confidence": "high", "x": 0.85, "accuracy": 0.571, "researched_via": "composio"}, {"id": 28, "name": "WhatsApp Business", "confidence": "high", "x": 0.85, "accuracy": 0, "researched_via": "composio"}, {"id": 29, "name": "Aircall", "confidence": "high", "x": 0.85, "accuracy": 0.714, "researched_via": "web"}, {"id": 30, "name": "Vonage", "confidence": "high", "x": 0.85, "accuracy": 0.429, "researched_via": "web"}, {"id": 32, "name": "Meta Ads", "confidence": "high", "x": 0.85, "accuracy": 0.286, "researched_via": "composio"}, {"id": 36, "name": "Klaviyo", "confidence": "high", "x": 0.85, "accuracy": 0.571, "researched_via": "composio"}, {"id": 55, "name": "Apify", "confidence": "high", "x": 0.85, "accuracy": 0.571, "researched_via": "composio"}, {"id": 65, "name": "Supabase", "confidence": "high", "x": 0.85, "accuracy": 0.714, "researched_via": "composio"}, {"id": 70, "name": "Sentry", "confidence": "high", "x": 0.85, "accuracy": 0.714, "researched_via": "composio"}, {"id": 76, "name": "Monday.com", "confidence": "high", "x": 0.85, "accuracy": 0.857, "researched_via": "seed"}, {"id": 82, "name": "Plaid", "confidence": "high", "x": 0.85, "accuracy": 0.714, "researched_via": "web"}, {"id": 87, "name": "Xero", "confidence": "high", "x": 0.85, "accuracy": 0.571, "researched_via": "composio"}, {"id": 95, "name": "Reducto", "confidence": "high", "x": 0.85, "accuracy": 1.0, "researched_via": "web"}], "effortSplit": [{"label": "Pure agent automation (seed + Composio)", "value": 59}, {"label": "Browser/docs fallback (web)", "value": 41}, {"label": "Human quality checking sample", "value": 18}]};
+    const COLORS = {
+      self_serve: "#16a34a", gated: "#dc2626", unknown: "#94a3b8",
+      "OAuth2": "#2563eb", "OAuth2 + API key": "#7c3aed", "API key / token": "#0f766e", "Basic auth": "#d97706", other: "#64748b",
+      Ready: "#16a34a", "Sales/API gate": "#dc2626", "Anti-bot/Captcha": "#ea580c", "Missing docs": "#d97706", "No/limited toolkit": "#7c3aed", "Research failure": "#64748b", "Other blocker": "#94a3b8",
+      high: "#16a34a", medium: "#d97706", low: "#dc2626", seed: "#64748b", composio: "#2563eb", web: "#7c3aed",
+      mcp_true: "#16a34a", mcp_false: "#dc2626", mcp_unknown: "#94a3b8"
+    };
+
+    // Tooling / models provided by the user — shown in the report
+   
+
+    function donutSVG(items, opts) {
+      const total = items.reduce((s, d) => s + d.value, 0) || 1;
+      let offset = 0, segs = "";
+      items.forEach(d => {
+        const part = d.value / total * 100;
+        segs += `<circle cx="100" cy="100" r="70" fill="none" stroke="${d.color}" stroke-width="26" pathLength="100" stroke-dasharray="${part} ${100-part}" stroke-dashoffset="${-offset}" transform="rotate(-90 100 100)"/>`;
+        offset += part;
+      });
+      return `<svg viewBox="0 0 380 220" style="width:320px;flex:0 0 320px"><circle cx="100" cy="100" r="70" fill="none" stroke="#e2e8f0" stroke-width="26"/>${segs}<text x="100" y="104" text-anchor="middle" font-size="22" font-weight="800">${total}</text><text x="100" y="132" text-anchor="middle" class="muted-svg">models</text></svg>`;
+    }
+
+    function renderToolsPanel(target) {
+      const t = typeof target === 'string' ? el(target) : target;
+      if (!t) return;
+      const items = DATA.tooling;
+      const left = donutSVG(items);
+      const right = `<div class="tools-list">${items.map(i => `<div class="tool-chip"><span class="tool-swatch" style="background:${i.color}"></span>${i.name}</div>`).join('')}</div>`;
+      t.innerHTML = `<div style="display:flex;gap:18px;align-items:flex-start">${left}${right}</div>`;
+    }
+
+    function el(id) { return document.getElementById(id); }
+    function maxSum(rows, keys) { return Math.max(1, ...rows.map(r => keys.reduce((s, k) => s + (r[k] || 0), 0))); }
+    function labelText(text, max=18) { return text.length > max ? text.slice(0, max - 1) + "…" : text; }
+
+    function renderLegend(keys, labels) {
+      return `<div class="legend-note">${keys.map(k => `<span style="display:inline-flex;align-items:center;margin-right:12px"><span style="width:10px;height:10px;background:${COLORS[k] || "#64748b"};display:inline-block;border-radius:2px;margin-right:5px"></span>${labels?.[k] || k}</span>`).join("")}</div>`;
+    }
+
+    function groupedColumns(target, rows, keys, labels) {
+      const w = 920, h = 360, p = {l:56,r:24,t:20,b:90};
+      const innerW = w - p.l - p.r, innerH = h - p.t - p.b;
+      const maxVal = Math.max(1, ...rows.flatMap(r => keys.map(k => r[k] || 0)));
+      const groupW = innerW / rows.length;
+      const barW = Math.max(4, (groupW - 12) / keys.length);
+      let svg = `<svg viewBox="0 0 ${w} ${h}">`;
+      svg += `<line x1="${p.l}" y1="${p.t + innerH}" x2="${w - p.r}" y2="${p.t + innerH}" stroke="#cbd5e1"/>`;
+      rows.forEach((r, i) => {
+        const gx = p.l + i * groupW + 6;
+        keys.forEach((k, j) => {
+          const val = r[k] || 0;
+          const bh = val / maxVal * innerH;
+          const x = gx + j * barW;
+          const y = p.t + innerH - bh;
+          svg += `<rect x="${x}" y="${y}" width="${barW - 2}" height="${bh}" rx="2" fill="${COLORS[k]}"/>`;
+          if (val) svg += `<text x="${x + (barW - 2) / 2}" y="${y - 4}" text-anchor="middle" class="muted-svg">${val}</text>`;
+        });
+        svg += `<text x="${gx + groupW/2 - 6}" y="${h - 42}" text-anchor="end" transform="rotate(-35 ${gx + groupW/2 - 6} ${h - 42})" class="label">${labelText(r.category, 16)}</text>`;
+      });
+      svg += `</svg>${renderLegend(keys, labels)}`;
+      target.innerHTML = svg;
+    }
+
+    function stackedHorizontal(target, rows, keys) {
+      const w = 980, rowH = 36, gap = 12, p = {l:140,r:64,t:18,b:40};
+      const h = p.t + p.b + rows.length * (rowH + gap);
+      const innerW = w - p.l - p.r;
+      const maxTotal = maxSum(rows, keys);
+      let svg = `<svg viewBox="0 0 ${w} ${h}">`;
+      rows.forEach((r, i) => {
+        const y = p.t + i * (rowH + gap);
+        svg += `<text x="${p.l - 8}" y="${y + 18}" text-anchor="end" class="label">${labelText(r.category, 17)}</text>`;
+        let x = p.l;
+        keys.forEach(k => {
+          const val = r[k] || 0;
+          const bw = val / maxTotal * innerW;
+          if (bw > 0) {
+            svg += `<rect x="${x}" y="${y}" width="${bw}" height="${rowH}" fill="${COLORS[k] || "#64748b"}" rx="2"/>`;
+            if (bw > 20) svg += `<text x="${x + bw / 2}" y="${y + 18}" text-anchor="middle" fill="#fff" font-size="11">${val}</text>`;
+          }
+          x += bw;
+        });
+      });
+      svg += `</svg>${renderLegend(keys)}`;
+      target.innerHTML = svg;
+    }
+
+    function stackedColumns(target, rows, keys) {
+      const w = 920, h = 460, p = {l:56,r:24,t:22,b:100};
+      const innerW = w - p.l - p.r, innerH = h - p.t - p.b;
+      const maxTotal = maxSum(rows, keys);
+      const colW = innerW / rows.length * .66;
+      let svg = `<svg viewBox="0 0 ${w} ${h}">`;
+      svg += `<line x1="${p.l}" y1="${p.t + innerH}" x2="${w - p.r}" y2="${p.t + innerH}" stroke="#cbd5e1"/>`;
+      rows.forEach((r, i) => {
+        const cx = p.l + i * (innerW / rows.length) + (innerW / rows.length - colW) / 2;
+        let y = p.t + innerH;
+        keys.forEach(k => {
+          const val = r[k] || 0;
+          const bh = val / maxTotal * innerH;
+          y -= bh;
+          if (bh > 0) svg += `<rect x="${cx}" y="${y}" width="${colW}" height="${bh}" fill="${COLORS[k] || "#64748b"}" rx="2"/>`;
+        });
+        svg += `<text x="${cx + colW/2}" y="${h - 46}" text-anchor="end" transform="rotate(-35 ${cx + colW/2} ${h - 46})" class="label">${labelText(r.category, 15)}</text>`;
+      });
+      svg += `</svg>${renderLegend(keys)}`;
+      target.innerHTML = svg;
+    }
+
+    function donut(target, items) {
+      const total = items.reduce((s, d) => s + d.value, 0) || 1;
+      let offset = 0;
+      let segs = "";
+      items.forEach(d => {
+        const part = d.value / total * 100;
+        segs += `<circle cx="100" cy="100" r="70" fill="none" stroke="${d.color}" stroke-width="26" pathLength="100" stroke-dasharray="${part} ${100-part}" stroke-dashoffset="${-offset}" transform="rotate(-90 100 100)"/>`;
+        offset += part;
+      });
+      target.innerHTML = `<svg viewBox="0 0 620 240"><circle cx="100" cy="100" r="70" fill="none" stroke="#e2e8f0" stroke-width="26"/>${segs}<text x="100" y="104" text-anchor="middle" font-size="28" font-weight="800">${total}</text><text x="100" y="132" text-anchor="middle" class="muted-svg">total</text>${items.map((d,i) => `<rect x="240" y="${28 + i*28}" width="14" height="14" fill="${d.color}" rx="2"/><text x="262" y="${38 + i*28}" class="label">${d.label}: ${d.value} (${(d.value*100/total).toFixed(1)}%)</text>`).join("")}</svg>`;
+    }
+
+    function lineChart(target) {
+      const points = [{label:"Pass 1", value: DATA.verification.pass1 || 0}, {label:"Pass 2", value: DATA.verification.pass2 || 0}];
+      const w = 700, h = 320, p = {l:66,r:36,t:30,b:60};
+      const x = i => p.l + i * (w - p.l - p.r);
+      const y = v => p.t + (1 - v) * (h - p.t - p.b);
+      let svg = `<svg viewBox="0 0 ${w} ${h}"><line x1="${p.l}" y1="${h-p.b}" x2="${w-p.r}" y2="${h-p.b}" stroke="#cbd5e1"/><line x1="${p.l}" y1="${p.t}" x2="${p.l}" y2="${h-p.b}" stroke="#cbd5e1"/>`;
+      svg += `<path d="M ${x(0)} ${y(points[0].value)} L ${x(1)} ${y(points[1].value)}" stroke="#2563eb" stroke-width="4" fill="none"/>`;
+      points.forEach((d,i) => {
+        svg += `<circle cx="${x(i)}" cy="${y(d.value)}" r="8" fill="#2563eb"/><text x="${x(i)}" y="${y(d.value)-15}" text-anchor="middle" class="title-small">${(d.value*100).toFixed(1)}%</text><text x="${x(i)}" y="${h-18}" text-anchor="middle" class="label">${d.label}</text>`;
+      });
+      svg += `<text x="${w/2}" y="20" text-anchor="middle" class="muted-svg">Strict accuracy, unsure counted as wrong</text></svg>`;
+      target.innerHTML = svg;
+    }
+
+    function scatter(target) {
+      const pts = DATA.scatterPoints;
+      const w = 720, h = 360, p = {l:66,r:34,t:26,b:60};
+      const x = v => p.l + v * (w - p.l - p.r);
+      const y = v => p.t + (1 - v) * (h - p.t - p.b);
+      let svg = `<svg viewBox="0 0 ${w} ${h}"><line x1="${p.l}" y1="${h-p.b}" x2="${w-p.r}" y2="${h-p.b}" stroke="#cbd5e1"/><line x1="${p.l}" y1="${p.t}" x2="${p.l}" y2="${h-p.b}" stroke="#cbd5e1"/>`;
+      svg += `<text x="${w/2}" y="${h-10}" text-anchor="middle" class="label">Agent confidence</text><text x="16" y="${h/2}" transform="rotate(-90 16 ${h/2})" text-anchor="middle" class="label">Actual pass 1 accuracy</text>`;
+      svg += `<rect x="${x(.7)}" y="${y(.4)}" width="${x(1)-x(.7)}" height="${y(0)-y(.4)}" fill="#fee2e2" opacity=".65"/><text x="${x(.84)}" y="${y(.34)}" text-anchor="middle" class="muted-svg">high confidence / low accuracy</text>`;
+      pts.forEach(d => {
+        svg += `<circle cx="${x(d.x)}" cy="${y(d.accuracy)}" r="6" fill="${COLORS[d.confidence] || "#64748b"}" opacity=".9"><title>${d.name}: ${d.confidence}, ${(d.accuracy*100).toFixed(0)}%</title></circle>`;
+      });
+      svg += `</svg>${renderLegend(["high","medium","low"], {high:"high confidence", medium:"medium confidence", low:"low confidence"})}`;
+      target.innerHTML = svg;
+    }
+
+    function treemap(target) {
+      const groups = DATA.breadthByMcp;
+      const entries = Object.keys(groups).sort().map(k => ({breadth:k, ...groups[k], total:Object.values(groups[k]).reduce((a,b)=>a+b,0)}));
+      const total = entries.reduce((s,d) => s + d.total, 0) || 1;
+      const w = 720, h = 420;
+      let x = 0, svg = `<svg viewBox="0 0 ${w} ${h}">`;
+      entries.forEach(g => {
+        const gw = w * g.total / total;
+        let y = 0;
+        ["mcp_true","mcp_false","mcp_unknown"].forEach(k => {
+          const val = g[k] || 0;
+          const gh = val ? h * val / g.total : 0;
+          if (gh > 0) svg += `<rect x="${x}" y="${y}" width="${gw}" height="${gh}" fill="${COLORS[k]}" stroke="#fff"/><text x="${x+8}" y="${y+20}" fill="#fff" font-size="12" font-weight="700">${gh > 26 ? val : ""}</text>`;
+          y += gh;
+        });
+        svg += `<text x="${x+8}" y="${h-10}" fill="#fff" font-size="12" font-weight="800">${g.breadth} (${g.total})</text>`;
+        x += gw;
+      });
+      svg += `</svg>${renderLegend(["mcp_true","mcp_false","mcp_unknown"], {mcp_true:"MCP claimed", mcp_false:"No MCP", mcp_unknown:"MCP unknown"})}`;
+      target.innerHTML = svg;
+    }
+
+    // Injected source breakdown data from `python3 check.py`
+    DATA.viaCounts = DATA.viaCounts || {seed:12, composio:47, web:41};
+    DATA.sourceByCategory = DATA.sourceByCategory || [
+      {category: "AI / Media", web:7, composio:3, seed:0},
+      {category: "CRM", seed:2, composio:4, web:4},
+      {category: "Messaging", seed:1, web:5, composio:4},
+      {category: "Data / SEO", composio:5, web:5, seed:0},
+      {category: "Dev / Infra", seed:1, composio:7, web:2},
+      {category: "Ecommerce", seed:1, web:6, composio:3},
+      {category: "Finance", composio:5, web:5, seed:0},
+      {category: "Marketing", composio:6, web:4, seed:0},
+      {category: "Productivity", seed:5, composio:4, web:1},
+      {category: "Support", seed:2, composio:6, web:2}
+    ];
+    DATA.viaComposioList = DATA.viaComposioList || ["Pipedrive","Attio","Zoho CRM","Close","Freshdesk","Front","Pylon","Plain","Help Scout","Gorgias","Zoho Cliq","Discord","Telegram","WhatsApp Business","Google Ads","Meta Ads","LinkedIn Ads","Mailchimp","Klaviyo","SendGrid","Salesforce Commerce Cloud","Gumroad","Amazon Selling Partner","DataForSEO","Ahrefs","Apify","Firecrawl","Bright Data","Vercel","Cloudflare","Supabase","Neo4j","Snowflake","Datadog","Sentry","Linear","ClickUp","Coda","Harvest","Stripe","QuickBooks","Xero","Brex","Ramp","Fathom","Devin","YouTube Transcript"];
+    DATA.viaWebList = DATA.viaWebList || ["Twenty","Podio","Copper","DealCloud","LiveAgent","Gladly","Twilio","Lark (Larksuite)","Pumble","Aircall","Vonage","GoHighLevel","systeme.io","Pinterest","Threads (Meta)","WooCommerce","BigCommerce","Magento (Adobe Commerce)","Squarespace","Ecwid","fanbasis","SE Ranking","MrScraper","Sherlock","Waterfall.io","Clay","Netlify","MongoDB Atlas","Smartsheet","Plaid","Binance","Paygent Connect","iPayX","PitchBook","NotebookLM","Otter AI","Consensus","Reducto","higgsfield","Mermaid CLI","Grain"];
+    DATA.research_errors = DATA.research_errors || ["Copper","DealCloud","LiveAgent","Lark (Larksuite)","Pumble","Aircall","GoHighLevel","Pinterest","Sherlock","Binance","iPayX","Grain"];
+    DATA.low_confidence = DATA.low_confidence || ["Twenty","Copper","LiveAgent","Lark (Larksuite)","Pinterest","Sherlock","Binance","iPayX","PitchBook","Grain"];
+
+    // render source-by-category stacked columns and overall via donut
+    function renderSourceByCategory(target, rows) {
+      stackedColumns(target, rows, ["seed","composio","web"]);
+    }
+
+    function renderViaDonut(target) {
+      const items = Object.entries(DATA.viaCounts).map(([k,v]) => ({label:k, value:v, color: COLORS[k] || "#64748b"}));
+      donut(target, items);
+    }
+
+    groupedColumns(el("accessChart"), DATA.accessByCategory, ["self_serve","gated","unknown"], {self_serve:"Self-serve", gated:"Gated", unknown:"Unknown"});
+    stackedHorizontal(el("authStacked"), DATA.authByCategory, ["OAuth2","OAuth2 + API key","API key / token","Basic auth","other","unknown"]);
+    stackedColumns(el("readinessStacked"), DATA.readinessByCategory, ["Ready","Sales/API gate","Anti-bot/Captcha","Missing docs","No/limited toolkit","Research failure","Other blocker"]);
+    treemap(el("treemap"));
+    lineChart(el("accuracyLine"));
+    scatter(el("scatter"));
+    donut(el("effortDonut"), DATA.effortSplit.map((d,i) => ({...d, color:["#2563eb","#7c3aed","#d97706"][i]})));
+    donut(el("authDonut"), Object.entries(DATA.authCounts).map(([label,value]) => ({label, value, color: COLORS[label] || "#64748b"})));
+    donut(el("accessDonut"), Object.entries(DATA.accessCounts).map(([label,value]) => ({label: label.replace("_","-"), value, color: COLORS[label] || "#64748b"})));
+    donut(el("confidenceDonut"), Object.entries(DATA.confidenceCounts).map(([label,value]) => ({label, value, color: COLORS[label] || "#64748b"})));
+    renderToolsPanel('toolingPanel');
+    renderSourceByCategory(el("sourceByCategory"), DATA.sourceByCategory);
+    renderViaDonut(el("viaDonut"));
+    function renderList(id, arr) { const node = el(id); if (!node) return; node.innerHTML = `<ul style="margin:0;padding:10px 14px;list-style:disc">${arr.map(i=>`<li>${i}</li>`).join('')}</ul>`; }
+    renderList('viaComposioList', DATA.viaComposioList);
+    renderList('viaWebList', DATA.viaWebList);
+    renderList('researchErrorsList', DATA.research_errors);
+    renderList('lowConfidenceList', DATA.low_confidence);
+  </script>
+</body>
+</html>
