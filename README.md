@@ -100,20 +100,6 @@ python3 agent/verify.py score --in output/verification_pass1_template.json --out
 
 7. (Optional) Re-sample the same ids for pass 2 and repeat the manual review/score cycle to measure improvement.
 
-## Pushing this repo to GitHub
-
-To push your local repo to `https://github.com/kazuma761/composio_assignment`:
-
-```bash
-git remote add origin https://github.com/kazuma761/composio_assignment.git
-git branch -M main
-git add .
-git commit -m "Add research + verification pipeline and report"
-# If using HTTPS -> enter username/password or use a personal access token
-git push -u origin main
-```
-
-If you want to push from CI or script, set `GITHUB_TOKEN` in the environment and use `git push` with `https://$GITHUB_TOKEN@github.com/...` or use the GitHub CLI (`gh auth login`).
 
 ## Notes & troubleshooting
 
