@@ -1,4 +1,4 @@
-
+# composio_assignment
 
 This repository contains the Composio audit tooling used to research 100 apps, analyze patterns, and run a two-pass verification workflow.
 
