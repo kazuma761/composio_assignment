@@ -2,6 +2,7 @@
 
 This repository contains the Composio audit tooling used to research 100 apps, analyze patterns, and run a two-pass verification workflow.
 
+Live Page = https://composio-assignment-psi.vercel.app/
 ## Quick Start
 
 - Run research to populate `output/results.json` from `data/apps.json`.
