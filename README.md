@@ -19,6 +19,7 @@ Install Python 3.10+ (3.11 recommended). Install dependencies into a virtualenv:
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+pip install composio composio-openai-agents openai-agents
 ```
 
 Required Python packages (see `requirements.txt`):
